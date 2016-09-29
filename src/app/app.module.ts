@@ -4,10 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { CalendarComponent } from './calendar/calendar.component';
+import { MonthHeaderComponent } from './month-header/month-header.component';
+import { MonthComponent } from './month/month.component';
+import { DayComponent } from './day/day.component';
 
 @NgModule({
   declarations: [
-    CalendarComponent
+    CalendarComponent,
+    MonthHeaderComponent,
+    MonthComponent,
+    DayComponent
   ],
   imports: [
     BrowserModule,
