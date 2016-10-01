@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
-import { CalendarComponent } from './calendar/calendar.component';
-import { MonthHeaderComponent } from './month-header/month-header.component';
-import { MonthComponent } from './month/month.component';
-import { DayComponent } from './day/day.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {CalendarComponent} from './calendar/calendar.component';
+import {MonthHeaderComponent} from './month-header/month-header.component';
+import {MonthComponent} from './month/month.component';
+import {DayComponent} from './day/day.component';
+import {CalendarService} from './calendar.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { DayComponent } from './day/day.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [CalendarService],
   bootstrap: [CalendarComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
