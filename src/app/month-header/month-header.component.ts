@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CalendarService} from '../calendar.service';
 
 @Component({
   selector: 'app-month-header',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./month-header.component.css']
 })
 export class MonthHeaderComponent implements OnInit {
+  month = null;
+  year = Number.MIN_SAFE_INTEGER;
 
-  constructor() { }
+  constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
+    this.month = this.calendarService.getMonthName();
+    this.year = this.calendarService.getYear();
   }
-
 }

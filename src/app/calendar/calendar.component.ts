@@ -12,6 +12,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.calendarService.init();
   }
 
 }
