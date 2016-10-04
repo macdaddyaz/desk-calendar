@@ -14,32 +14,37 @@ describe('Object: Calendar', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should initialize with the given month and year', () => {
+  it('should initialize with the given getMonth and year', () => {
     service.init(2016, 8);
 
-    expect(service.getMonth()).toEqual(8);
-    expect(service.getYear()).toEqual(2016);
-    expect(service.getMonthName()).toEqual('September');
+    expect(service.month()).toEqual(8);
+    expect(service.year()).toEqual(2016);
+    expect(service.monthName()).toEqual('September');
 
     service.init(2014, 2);
 
-    expect(service.getMonth()).toEqual(2);
-    expect(service.getYear()).toEqual(2014);
-    expect(service.getMonthName()).toEqual('March');
+    expect(service.month()).toEqual(2);
+    expect(service.year()).toEqual(2014);
+    expect(service.monthName()).toEqual('March');
   });
 
-  it('should initialize with the current month and year', () => {
+  it('should initialize with the current getMonth and year', () => {
     service.init();
 
     let now = new Date();
-    expect(service.getMonth()).toEqual(now.getMonth());
-    expect(service.getYear()).toEqual(now.getFullYear());
+    expect(service.month()).toEqual(now.getMonth());
+    expect(service.year()).toEqual(now.getFullYear());
 
-    // Only set year, not month
+    // Only set year, not getMonth
     service.init(2014);
     // Should default whole date
-    expect(service.getMonth()).toEqual(now.getMonth());
-    expect(service.getYear()).toEqual(now.getFullYear());
+    expect(service.month()).toEqual(now.getMonth());
+    expect(service.year()).toEqual(now.getFullYear());
+  });
+
+  it('should generate a 2-dimensional array of days for the current getMonth and year', () => {
+    // Test September 2016
+    service.init(2016, 8);
   });
 });
 

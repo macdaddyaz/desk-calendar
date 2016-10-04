@@ -34,10 +34,10 @@ describe('Component: MonthHeader', () => {
 
   it('should show the month and year from the CalendarService', () => {
     let calendarService = fixture.debugElement.injector.get(CalendarService);
-    calendarService.getYear = () => {
+    calendarService.year = () => {
       return 2011;
     };
-    calendarService.getMonthName = () => {
+    calendarService.monthName = () => {
       return 'May';
     };
 

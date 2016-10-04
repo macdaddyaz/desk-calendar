@@ -4,33 +4,33 @@ import * as moment from 'moment';
 @Injectable()
 export class CalendarService {
 
-  private year: number;
-  private month: number;
+  private _year: number;
+  private _month: number;
 
   constructor() {
   }
 
-  init(year?: number, month?: number) {
+  init(year?: number, month?: number): void {
     if (year && month) {
-      this.year = year;
-      this.month = month;
+      this._year = year;
+      this._month = month;
     }
     else {
       let now = moment();
-      this.year = now.year();
-      this.month = now.month();
+      this._year = now.year();
+      this._month = now.month();
     }
   }
 
-  getYear(): number {
-    return this.year;
+  year(): number {
+    return this._year;
   }
 
-  getMonth(): number {
-    return this.month;
+  month(): number {
+    return this._month;
   }
 
-  getMonthName(): string {
-    return moment.months(this.month);
+  monthName(): string {
+    return moment.months(this._month);
   }
 }
