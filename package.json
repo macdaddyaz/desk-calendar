@@ -5,10 +5,15 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
+    "clean": "rm -rf dist/",
+    "typings": "typings install",
     "lint": "tslint \"src/**/*.ts\"",
+    "build": "tsc --project src/",
+    "rebuild": "npm run clean && npm run build",
+    "postinstall": "npm run typings",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "tsc --project e2e/ && protractor"
   },
   "private": true,
   "dependencies": {
