@@ -42,9 +42,29 @@ describe('Object: Calendar', () => {
     expect(service.year()).toEqual(now.getFullYear());
   });
 
-  it('should generate a 2-dimensional array of days for the current getMonth and year', () => {
+  it('should generate a 2-dimensional array of days for the current month and year', () => {
     // Test September 2016
     service.init(2016, 8);
+
+    let days = service.daysOfMonth();
+    expect(days.length).toEqual(6);
+    days.forEach((item, index) => {
+      expect(item.length).toEqual(7);
+    });
+  });
+
+  it('should fill in the days in the right order', () => {
+    // Test September 2016
+    service.init(2016, 8);
+
+    let days = service.daysOfMonth();
+    expect(days[0][0]).toBeNull();
+    expect(days[0][4]).toEqual(1);
+    expect(days[2][6]).toEqual(17);
+    expect(days[3][1]).toEqual(19);
+    expect(days[4][5]).toEqual(30);
+    expect(days[4][6]).toBeNull();
+    expect(days[5][6]).toBeNull();
   });
 });
 

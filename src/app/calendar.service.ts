@@ -7,6 +7,14 @@ export class CalendarService {
   private _year: number;
   private _month: number;
 
+  private static emptyWeek(): number[] {
+    return Array.of(null, null, null, null, null, null, null);
+  }
+
+  private static isEndOfWeek(dayOfWeek: number): boolean {
+    return Math.floor(dayOfWeek / 7) === 1;
+  }
+
   constructor() {
   }
 
@@ -32,5 +40,35 @@ export class CalendarService {
 
   monthName(): string {
     return moment.months(this._month);
+  }
+
+  daysOfMonth(): number[][] {
+    const NUM_WEEK_ROWS = 6;
+    let days = [];
+
+    let firstDay = moment().year(this._year).month(this._month).startOf('month');
+    let lastDay = moment().year(this._year).month(this._month).endOf('month');
+    let numDays = lastDay.daysInMonth();
+    let firstDayPos = firstDay.weekday();
+    let row = 0;
+    // initially offset the column to the day of week that the 1st falls on
+    let col = firstDayPos;
+
+    // initializing first row of grid
+    days[row] = CalendarService.emptyWeek();
+    for (let day = 1; day <= numDays; day++) {
+      days[row][col] = day;
+      if (CalendarService.isEndOfWeek(++col)) {
+        // at the end of this week, break to new row
+        days[++row] = CalendarService.emptyWeek();
+        // rest the column back to the beginning of the wee
+        col = 0;
+      }
+    }
+    while (days.length < NUM_WEEK_ROWS) {
+      // initialize an empty row
+      days[++row] = CalendarService.emptyWeek();
+    }
+    return days;
   }
 }
