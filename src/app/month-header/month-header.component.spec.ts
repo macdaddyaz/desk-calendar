@@ -1,18 +1,15 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, async, ComponentFixture} from '@angular/core/testing';
-import { MonthHeaderComponent } from './month-header.component';
+import {TestBed, ComponentFixture} from '@angular/core/testing';
+import {MonthHeaderComponent} from './month-header.component';
 import {CalendarService} from '../calendar.service';
-import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
 let component: MonthHeaderComponent;
 let fixture: ComponentFixture<MonthHeaderComponent>;
-let debugElement: DebugElement;
 let monthYearHeaderElement: HTMLElement;
 
-let stubCalendarService = {
-};
+let stubCalendarService = {};
 
 describe('Component: MonthHeader', () => {
   beforeEach(() => {
@@ -23,8 +20,7 @@ describe('Component: MonthHeader', () => {
 
     fixture = TestBed.createComponent(MonthHeaderComponent);
     component = fixture.componentInstance;
-    debugElement = fixture.debugElement.query(By.css('h1.month-year-header'));
-    monthYearHeaderElement = debugElement.nativeElement;
+    monthYearHeaderElement = fixture.debugElement.query(By.css('h1.month-year-header')).nativeElement;
   });
 
   it('should create an instance', () => {
