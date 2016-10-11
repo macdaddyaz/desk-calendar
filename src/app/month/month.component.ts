@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CalendarService} from '../calendar.service';
 
 @Component({
   selector: 'app-month',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./month.component.css']
 })
 export class MonthComponent implements OnInit {
+  daysOfMonth: number[][];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private calendarService: CalendarService) {
   }
 
+  ngOnInit() {
+    this.daysOfMonth = this.calendarService.daysOfMonth();
+  }
 }

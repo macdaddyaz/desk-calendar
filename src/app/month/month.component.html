@@ -1,5 +1,5 @@
 <table>
-  <tr>
+  <tr id="weekday-labels">
     <th>Sun</th>
     <th>Mon</th>
     <th>Tue</th>
@@ -8,142 +8,9 @@
     <th>Fri</th>
     <th>Sat</th>
   </tr>
-  <tr>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
-    </td>
-    <td>
-      <app-day>day</app-day>
+  <tr class="week" *ngFor="let weekOfMonth of daysOfMonth">
+    <td class="day" *ngFor="let dayOfMonth of weekOfMonth">
+      <app-day [dayOfMonth]="dayOfMonth"></app-day>
     </td>
   </tr>
 </table>
