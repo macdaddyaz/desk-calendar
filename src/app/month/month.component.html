@@ -1,0 +1,10 @@
+<table>
+  <tr id="weekday-labels">
+    <th *ngFor="let weekday of daysOfWeek">{{weekday}}</th>
+  </tr>
+  <tr class="week" *ngFor="let weekOfMonth of daysOfMonth">
+    <td class="day" *ngFor="let dayOfMonth of weekOfMonth">
+      <app-day [dayOfMonth]="dayOfMonth"></app-day>
+    </td>
+  </tr>
+</table>
