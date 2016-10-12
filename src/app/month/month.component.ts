@@ -7,12 +7,14 @@ import {CalendarService} from '../calendar.service';
   styleUrls: ['./month.component.css']
 })
 export class MonthComponent implements OnInit {
+  daysOfWeek: string[];
   daysOfMonth: number[][];
 
   constructor(private calendarService: CalendarService) {
   }
 
   ngOnInit() {
+    this.daysOfWeek = this.calendarService.daysOfWeek();
     this.daysOfMonth = this.calendarService.daysOfMonth();
   }
 }

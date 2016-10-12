@@ -66,6 +66,18 @@ describe('Object: Calendar', () => {
     expect(days[4][6]).toBeNull();
     expect(days[5][6]).toBeNull();
   });
+
+  it('should report the correct days of the week', () => {
+    let daysOfWeek: string[] = service.daysOfWeek();
+    expect(daysOfWeek.length).toEqual(7);
+    expect(daysOfWeek[0]).toEqual('Sun');
+    expect(daysOfWeek[1]).toEqual('Mon');
+    expect(daysOfWeek[2]).toEqual('Tue');
+    expect(daysOfWeek[3]).toEqual('Wed');
+    expect(daysOfWeek[4]).toEqual('Thu');
+    expect(daysOfWeek[5]).toEqual('Fri');
+    expect(daysOfWeek[6]).toEqual('Sat');
+  });
 });
 
 describe('Service: Calendar', () => {

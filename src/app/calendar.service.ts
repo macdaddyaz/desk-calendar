@@ -71,4 +71,8 @@ export class CalendarService {
     }
     return days;
   }
+
+  daysOfWeek(): string[] {
+    return moment.weekdaysShort();
+  }
 }
