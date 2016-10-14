@@ -13,7 +13,7 @@ export class MonthHeaderComponent implements OnInit {
   constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
-    this.year = this.calendarService.year();
-    this.month = this.calendarService.monthName();
+    this.year = this.calendarService.year;
+    this.month = this.calendarService.monthName;
   }
 }

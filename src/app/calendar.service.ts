@@ -30,19 +30,19 @@ export class CalendarService {
     }
   }
 
-  year(): number {
+  get year(): number {
     return this._year;
   }
 
-  month(): number {
+  get month(): number {
     return this._month;
   }
 
-  monthName(): string {
+  get monthName(): string {
     return moment.months(this._month);
   }
 
-  daysOfMonth(): number[][] {
+  get daysOfMonth(): number[][] {
     const NUM_WEEK_ROWS = 6;
     let days = [];
 
@@ -72,7 +72,7 @@ export class CalendarService {
     return days;
   }
 
-  daysOfWeek(): string[] {
+  get daysOfWeek(): string[] {
     return moment.weekdaysShort();
   }
 }
