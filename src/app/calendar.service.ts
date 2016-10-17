@@ -30,6 +30,14 @@ export class CalendarService {
     }
   }
 
+  get currentYear(): number {
+    return moment().year();
+  }
+
+  get currentMonth(): number {
+    return moment().month();
+  }
+
   get year(): number {
     return this._year;
   }
