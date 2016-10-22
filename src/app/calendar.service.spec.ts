@@ -34,12 +34,26 @@ describe('Object: Calendar', () => {
     let now = new Date();
     expect(service.month).toEqual(now.getMonth());
     expect(service.year).toEqual(now.getFullYear());
+  });
 
-    // Only set year, not month
+  it ('should default the month to current if not provided', () => {
     service.init(2014);
-    // Should default whole date
+    let now = new Date();
     expect(service.month).toEqual(now.getMonth());
+    expect(service.year).toEqual(2014);
+  });
+
+  it('should default the year to current if not provided', () => {
+    service.init(null, 2);
+    let now = new Date();
+    expect(service.month).toEqual(2);
     expect(service.year).toEqual(now.getFullYear());
+  });
+
+  it('should allow January as a valid month', () => {
+    service.init(2016, 0);
+    expect(service.month).toEqual(0);
+    expect(service.year).toEqual(2016);
   });
 
   it('should generate a 2-dimensional array of days for the current month and year', () => {

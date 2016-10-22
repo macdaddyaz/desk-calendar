@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as moment from 'moment';
+import {isNullOrUndefined} from 'util';
 
 @Injectable()
 export class CalendarService {
@@ -19,15 +20,9 @@ export class CalendarService {
   }
 
   init(year?: number, month?: number): void {
-    if (year && month) {
-      this._year = year;
-      this._month = month;
-    }
-    else {
-      let now = moment();
-      this._year = now.year();
-      this._month = now.month();
-    }
+    let now = moment();
+    this._year = isNullOrUndefined(year) ? now.year() : year;
+    this._month = isNullOrUndefined(month) ? now.month() : month;
   }
 
   get currentYear(): number {
