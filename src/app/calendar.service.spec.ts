@@ -17,38 +17,52 @@ describe('Object: Calendar', () => {
   it('should initialize with the given getMonth and year', () => {
     service.init(2016, 8);
 
-    expect(service.month()).toEqual(8);
-    expect(service.year()).toEqual(2016);
-    expect(service.monthName()).toEqual('September');
+    expect(service.month).toEqual(8);
+    expect(service.year).toEqual(2016);
+    expect(service.monthName).toEqual('September');
 
     service.init(2014, 2);
 
-    expect(service.month()).toEqual(2);
-    expect(service.year()).toEqual(2014);
-    expect(service.monthName()).toEqual('March');
+    expect(service.month).toEqual(2);
+    expect(service.year).toEqual(2014);
+    expect(service.monthName).toEqual('March');
   });
 
-  it('should initialize with the current getMonth and year', () => {
+  it('should initialize with the current month and year', () => {
     service.init();
 
     let now = new Date();
-    expect(service.month()).toEqual(now.getMonth());
-    expect(service.year()).toEqual(now.getFullYear());
+    expect(service.month).toEqual(now.getMonth());
+    expect(service.year).toEqual(now.getFullYear());
+  });
 
-    // Only set year, not getMonth
+  it ('should default the month to current if not provided', () => {
     service.init(2014);
-    // Should default whole date
-    expect(service.month()).toEqual(now.getMonth());
-    expect(service.year()).toEqual(now.getFullYear());
+    let now = new Date();
+    expect(service.month).toEqual(now.getMonth());
+    expect(service.year).toEqual(2014);
+  });
+
+  it('should default the year to current if not provided', () => {
+    service.init(null, 2);
+    let now = new Date();
+    expect(service.month).toEqual(2);
+    expect(service.year).toEqual(now.getFullYear());
+  });
+
+  it('should allow January as a valid month', () => {
+    service.init(2016, 0);
+    expect(service.month).toEqual(0);
+    expect(service.year).toEqual(2016);
   });
 
   it('should generate a 2-dimensional array of days for the current month and year', () => {
     // Test September 2016
     service.init(2016, 8);
 
-    let days = service.daysOfMonth();
+    let days = service.daysOfMonth;
     expect(days.length).toEqual(6);
-    days.forEach((item, index) => {
+    days.forEach((item) => {
       expect(item.length).toEqual(7);
     });
   });
@@ -57,7 +71,7 @@ describe('Object: Calendar', () => {
     // Test September 2016
     service.init(2016, 8);
 
-    let days = service.daysOfMonth();
+    let days = service.daysOfMonth;
     expect(days[0][0]).toBeNull();
     expect(days[0][4]).toEqual(1);
     expect(days[2][6]).toEqual(17);
@@ -68,7 +82,7 @@ describe('Object: Calendar', () => {
   });
 
   it('should report the correct days of the week', () => {
-    let daysOfWeek: string[] = service.daysOfWeek();
+    let daysOfWeek: string[] = service.daysOfWeek;
     expect(daysOfWeek.length).toEqual(7);
     expect(daysOfWeek[0]).toEqual('Sun');
     expect(daysOfWeek[1]).toEqual('Mon');

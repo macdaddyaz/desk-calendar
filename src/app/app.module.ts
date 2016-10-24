@@ -7,21 +7,25 @@ import {MonthHeaderComponent} from './month-header/month-header.component';
 import {MonthComponent} from './month/month.component';
 import {DayComponent} from './day/day.component';
 import {CalendarService} from './calendar.service';
+import {CalendarRoutingModule} from './calendar-routing.module';
+import {AppComponent} from './app.component';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    CalendarRoutingModule
+  ],
   declarations: [
+    AppComponent,
     CalendarComponent,
     MonthHeaderComponent,
     MonthComponent,
     DayComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
   providers: [CalendarService],
-  bootstrap: [CalendarComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

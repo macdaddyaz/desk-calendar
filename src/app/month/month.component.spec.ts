@@ -14,8 +14,8 @@ let fixture: ComponentFixture<MonthComponent>;
 
 // stub CalendarService
 const calendarServiceStub = {
-  daysOfWeek() { return []; },
-  daysOfMonth() { return []; }
+  daysOfWeek: [],
+  daysOfMonth: []
 };
 
 describe('Component: Month', () => {
@@ -34,30 +34,27 @@ describe('Component: Month', () => {
   });
 
   it('should label the days of the week using the calendar service', () => {
-    let calendarService: CalendarService = fixture.debugElement.injector.get(CalendarService);
+    let calendarService = fixture.debugElement.injector.get(CalendarService);
     let weekdays = ['Magic', 'Kareem', 'Shaq', 'Kobe'];
-    spyOn(calendarService, 'daysOfWeek').and.returnValue(weekdays);
+    calendarService.daysOfWeek = weekdays;
     fixture.detectChanges();
 
     let weekdayRowDebug: DebugElement = fixture.debugElement.query(By.css('tr#weekday-labels'));
     let weekdaysDebug: DebugElement[] = weekdayRowDebug.children;
-    expect(calendarService.daysOfWeek).toHaveBeenCalled();
     expect(weekdaysDebug.length).toEqual(weekdays.length);
     weekdays.forEach((weekday, i) => expect(weekdaysDebug[i].nativeElement.textContent).toEqual(weekday));
   });
 
   it('should create 6 rows and 42 day cells', () => {
-    let calendarService: CalendarService = fixture.debugElement.injector.get(CalendarService);
+    let calendarService = fixture.debugElement.injector.get(CalendarService);
     // set up a structure that looks like a real month
-    calendarService.daysOfMonth = () => {
-      return [[null, null, null, null, null, null, null],
+    calendarService.daysOfMonth = [[null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null]
         ];
-    };
     fixture.detectChanges();
 
     let monthRowsDebug: DebugElement[] = fixture.debugElement.queryAll(By.css('tr.week'));
@@ -69,10 +66,8 @@ describe('Component: Month', () => {
   });
 
   it('should initialize the day components with the day from the calendar', () => {
-    let calendarService: CalendarService = fixture.debugElement.injector.get(CalendarService);
-    calendarService.daysOfMonth = () => {
-      return [[null, 1, 2, 3], [10, 20, 30, 40], [100, 200, null, null]];
-    };
+    let calendarService = fixture.debugElement.injector.get(CalendarService);
+    calendarService.daysOfMonth = [[null, 1, 2, 3], [10, 20, 30, 40], [100, 200, null, null]];
     fixture.detectChanges();
 
     let dayCompsDebug: DebugElement[] = fixture.debugElement.queryAll(By.directive(DayComponent));

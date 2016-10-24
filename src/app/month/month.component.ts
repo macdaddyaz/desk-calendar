@@ -14,7 +14,7 @@ export class MonthComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.daysOfWeek = this.calendarService.daysOfWeek();
-    this.daysOfMonth = this.calendarService.daysOfMonth();
+    this.daysOfWeek = this.calendarService.daysOfWeek;
+    this.daysOfMonth = this.calendarService.daysOfMonth;
   }
 }
