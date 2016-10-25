@@ -5,8 +5,7 @@ import {isNullOrUndefined} from 'util';
 @Injectable()
 export class CalendarService {
 
-  private _year: number;
-  private _month: number;
+  private _yearAndMonth: YearAndMonth;
 
   private static emptyWeek(): number[] {
     return Array.of(null, null, null, null, null, null, null);
@@ -21,8 +20,19 @@ export class CalendarService {
 
   init(year?: number, month?: number): void {
     let now = moment();
-    this._year = isNullOrUndefined(year) ? now.year() : year;
-    this._month = isNullOrUndefined(month) ? now.month() : month;
+    let theYear = isNullOrUndefined(year) ? now.year() : year;
+    let theMonth = isNullOrUndefined(month) ? now.month() : month;
+    this._yearAndMonth = new YearAndMonth(theYear, theMonth);
+  }
+
+  calculateNextMonth(): YearAndMonth {
+    let newMonth = moment().year(this.year).month(this.month).day(1).add(1, 'months');
+    return new YearAndMonth(newMonth.year(), newMonth.month());
+  }
+
+  calculatePreviousMonth(): YearAndMonth {
+    let newMonth = moment().year(this.year).month(this.month).day(1).add(-1, 'months');
+    return new YearAndMonth(newMonth.year(), newMonth.month());
   }
 
   get currentYear(): number {
@@ -33,24 +43,28 @@ export class CalendarService {
     return moment().month();
   }
 
+  get yearAndMonth(): YearAndMonth {
+    return this._yearAndMonth;
+  }
+
   get year(): number {
-    return this._year;
+    return this._yearAndMonth.year;
   }
 
   get month(): number {
-    return this._month;
+    return this._yearAndMonth.month;
   }
 
   get monthName(): string {
-    return moment.months(this._month);
+    return moment.months(this.month);
   }
 
   get daysOfMonth(): number[][] {
     const NUM_WEEK_ROWS = 6;
     let days = [];
 
-    let firstDay = moment().year(this._year).month(this._month).startOf('month');
-    let lastDay = moment().year(this._year).month(this._month).endOf('month');
+    let firstDay = moment().year(this.year).month(this.month).startOf('month');
+    let lastDay = moment().year(this.year).month(this.month).endOf('month');
     let numDays = lastDay.daysInMonth();
     let firstDayPos = firstDay.weekday();
     let row = 0;
@@ -77,5 +91,18 @@ export class CalendarService {
 
   get daysOfWeek(): string[] {
     return moment.weekdaysShort();
+  }
+}
+
+export class YearAndMonth {
+  constructor(private _year: number, private _month: number) {
+  }
+
+  get year(): number {
+    return this._year;
+  }
+
+  get month(): number {
+    return this._month;
   }
 }

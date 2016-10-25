@@ -92,6 +92,38 @@ describe('Object: Calendar', () => {
     expect(daysOfWeek[5]).toEqual('Fri');
     expect(daysOfWeek[6]).toEqual('Sat');
   });
+
+  it('should calculate the next month within the same year', () => {
+    // Start in October 2016
+    service.init(2016, 9);
+    let {year, month} = service.calculateNextMonth();
+    expect(year).toEqual(2016);
+    expect(month).toEqual(10);
+  });
+
+  it('should calculate the next month across year boundaries', () => {
+    // Try December 2016 (boundary check)
+    service.init(2016, 11);
+    let {year, month} = service.calculateNextMonth();
+    expect(year).toEqual(2017);
+    expect(month).toEqual(0);
+  });
+
+  it('should calculate the previous month within the same year', () => {
+    // Start in October 2016
+    service.init(2016, 9);
+    let {year, month} = service.calculatePreviousMonth();
+    expect(year).toEqual(2016);
+    expect(month).toEqual(8);
+  });
+
+  it('should calculate the previous month across year boundaries', () => {
+    // Try January 2016 (boundary check)
+    service.init(2016, 0);
+    let {year, month} = service.calculatePreviousMonth();
+    expect(year).toEqual(2015);
+    expect(month).toEqual(11);
+  });
 });
 
 describe('Service: Calendar', () => {
