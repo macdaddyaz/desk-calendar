@@ -14,7 +14,9 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigateByUrl('/2016/09');
+    // Initialize the Calendar Service to 'default'
+    this.calendarService.init();
+    this.router.navigate(['/', this.calendarService.year, this.calendarService.month + 1]);
   }
 
 }

@@ -1,15 +1,15 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { IndexComponent } from './index.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {IndexComponent} from './index.component';
 import {Router} from '@angular/router';
 import {CalendarService} from '../calendar.service';
-import {Mock} from 'protractor/built/driverProviders';
 
 class MockRouter {
-  navigateByUrl = jasmine.createSpy('navigateByUrl').and.returnValue(null);
+  navigate = jasmine.createSpy('navigate').and.returnValue(null);
+}
+
+class MockCalendar {
+  init = jasmine.createSpy('init');
 }
 
 describe('IndexComponent', () => {
@@ -18,22 +18,33 @@ describe('IndexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IndexComponent ],
+      declarations: [IndexComponent],
       providers: [
-        {provide: CalendarService, useValue: {}},
+        {provide: CalendarService, useClass: MockCalendar},
         {provide: Router, useClass: MockRouter}
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize the calendar to default values and route to the current year/month', () => {
+    let calendarService = fixture.debugElement.injector.get(CalendarService);
+    // Initialize to June 2016
+    calendarService.year = 2016;
+    calendarService.month = 5;
+    let router = fixture.debugElement.injector.get(Router);
+
+    fixture.detectChanges();
+    expect(calendarService.init).toHaveBeenCalledWith();
+    expect(router.navigate).toHaveBeenCalledWith(['/', 2016, 6]);
   });
 });
