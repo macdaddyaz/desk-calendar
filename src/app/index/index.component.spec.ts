@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {IndexComponent} from './index.component';
 import {Router} from '@angular/router';
 import {CalendarService} from '../calendar.service';
@@ -12,11 +12,11 @@ class MockCalendar {
   init = jasmine.createSpy('init');
 }
 
-describe('IndexComponent', () => {
+describe('Component: Index', () => {
   let component: IndexComponent;
   let fixture: ComponentFixture<IndexComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [IndexComponent],
       providers: [
@@ -24,10 +24,8 @@ describe('IndexComponent', () => {
         {provide: Router, useClass: MockRouter}
       ]
     })
-      .compileComponents();
-  }));
+    .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
   });

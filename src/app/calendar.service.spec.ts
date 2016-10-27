@@ -91,7 +91,7 @@ describe('Object: Calendar', () => {
     days = service.daysOfMonth;
     expect(days[0][6]).toEqual(1);
     expect(days[5][1]).toEqual(31);
-  })
+  });
 
   it('should report the correct days of the week', () => {
     let daysOfWeek: string[] = service.daysOfWeek;
