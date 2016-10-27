@@ -18,9 +18,6 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.year = 2016;
-    // this.month = 9;
-    // this.updateCalendar();
     this.route.params
       .map(params => <string>params['year'])
       .subscribe(year => this.updateYearFromParam(year));

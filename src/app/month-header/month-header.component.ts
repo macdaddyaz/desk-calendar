@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CalendarService} from '../calendar.service';
 
 @Component({
@@ -10,9 +10,22 @@ export class MonthHeaderComponent implements OnInit {
   month = null;
   year = Number.MIN_SAFE_INTEGER;
 
-  constructor(private calendarService: CalendarService) { }
+  constructor(private calendarService: CalendarService) {
+  }
 
   ngOnInit() {
+    this.updateFromCalendar();
+  }
+
+  previousMonth() {
+    this.updateFromCalendar();
+  }
+
+  nextMonth() {
+    this.updateFromCalendar();
+  }
+
+  private updateFromCalendar() {
     this.year = this.calendarService.year;
     this.month = this.calendarService.monthName;
   }

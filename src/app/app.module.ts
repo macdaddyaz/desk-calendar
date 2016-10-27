@@ -9,6 +9,7 @@ import {DayComponent} from './day/day.component';
 import {CalendarService} from './calendar.service';
 import {CalendarRoutingModule} from './calendar-routing.module';
 import {AppComponent} from './app.component';
+import {IndexComponent} from './index/index.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {AppComponent} from './app.component';
   declarations: [
     AppComponent,
     CalendarComponent,
+    IndexComponent,
     MonthHeaderComponent,
     MonthComponent,
     DayComponent
