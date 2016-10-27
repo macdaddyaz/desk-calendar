@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CalendarService} from '../calendar.service';
+import {CalendarService, YearAndMonth} from '../calendar.service';
 
 @Component({
   selector: 'app-month-header',
@@ -7,8 +7,10 @@ import {CalendarService} from '../calendar.service';
   styleUrls: ['./month-header.component.css']
 })
 export class MonthHeaderComponent implements OnInit {
-  month = null;
-  year = Number.MIN_SAFE_INTEGER;
+  month: string = null;
+  year: number = Number.MIN_SAFE_INTEGER;
+  next: YearAndMonth;
+  previous: YearAndMonth;
 
   constructor(private calendarService: CalendarService) {
   }
@@ -17,16 +19,10 @@ export class MonthHeaderComponent implements OnInit {
     this.updateFromCalendar();
   }
 
-  previousMonth() {
-    this.updateFromCalendar();
-  }
-
-  nextMonth() {
-    this.updateFromCalendar();
-  }
-
   private updateFromCalendar() {
     this.year = this.calendarService.year;
     this.month = this.calendarService.monthName;
+    this.next = this.calendarService.calculateNextMonth();
+    this.previous = this.calendarService.calculatePreviousMonth();
   }
 }

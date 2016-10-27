@@ -6,7 +6,8 @@ import {CalendarService} from '../calendar.service';
 import {MonthHeaderComponent} from '../month-header/month-header.component';
 import {MonthComponent} from '../month/month.component';
 import {DayComponent} from '../day/day.component';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {CalendarTestModule} from '../test/dummy/calendar-test.module';
 
 // stub CalendarService
 const calendarServiceStub = {};
@@ -15,10 +16,10 @@ describe('Component: Calendar', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent, MonthHeaderComponent, MonthComponent, DayComponent],
+      imports: [CalendarTestModule],
       providers: [
         {provide: CalendarService, useValue: calendarServiceStub},
-        {provide: ActivatedRoute, useValue: {}},
-        {provide: Router, useValue: {}}
+        {provide: ActivatedRoute, useValue: {}}
       ]
     });
   });

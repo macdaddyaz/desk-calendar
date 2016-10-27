@@ -8,6 +8,7 @@ import {DayComponent} from '../day/day.component';
 import {CalendarService} from '../calendar.service';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
+import {CalendarTestModule} from '../test/dummy/calendar-test.module';
 
 let component: MonthComponent;
 let fixture: ComponentFixture<MonthComponent>;
@@ -22,6 +23,7 @@ describe('Component: Month', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent, MonthHeaderComponent, MonthComponent, DayComponent],
+      imports: [CalendarTestModule],
       providers: [{provide: CalendarService, useValue: calendarServiceStub}]
     });
 

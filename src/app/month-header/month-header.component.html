@@ -1,1 +1,5 @@
-<h1 class="month-year-header">{{month}} {{year}}</h1>
+<h1 class="month-year-header">
+  <a [routerLink]="['/', previous.year, previous.month]" aria-label="view previous month"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+  {{month}} {{year}}
+  <a [routerLink]="['/', next.year, next.month]" aria-label="view next month"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</h1>

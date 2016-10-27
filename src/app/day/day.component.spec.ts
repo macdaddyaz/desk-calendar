@@ -7,6 +7,7 @@ import {MonthHeaderComponent} from '../month-header/month-header.component';
 import {MonthComponent} from '../month/month.component';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
+import {CalendarTestModule} from '../test/dummy/calendar-test.module';
 
 let component: DayComponent;
 let fixture: ComponentFixture<DayComponent>;
@@ -15,6 +16,7 @@ describe('Component: Day', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent, MonthHeaderComponent, MonthComponent, DayComponent],
+      imports: [CalendarTestModule]
     });
 
     fixture = TestBed.createComponent(DayComponent);

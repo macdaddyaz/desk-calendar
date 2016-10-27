@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CalendarService} from '../calendar.service';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -13,7 +13,6 @@ export class CalendarComponent implements OnInit {
   private month: number;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private calendarService: CalendarService) {
   }
 
