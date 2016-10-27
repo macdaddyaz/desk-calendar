@@ -6,6 +6,7 @@ import {isNullOrUndefined} from 'util';
 export class CalendarService {
 
   private _yearAndMonth: YearAndMonth;
+  private _daysOfMonth: number[][] = null;
 
   private static emptyWeek(): number[] {
     return Array.of(null, null, null, null, null, null, null);
@@ -19,10 +20,11 @@ export class CalendarService {
   }
 
   init(year?: number, month?: number): void {
-    let now = moment();
-    let theYear = isNullOrUndefined(year) ? now.year() : year;
-    let theMonth = isNullOrUndefined(month) ? now.month() : month;
+    let theYear = isNullOrUndefined(year) ? this.currentYear : year;
+    let theMonth = isNullOrUndefined(month) ? this.currentMonth : month;
     this._yearAndMonth = new YearAndMonth(theYear, theMonth);
+    // Clear out the cached value so that it will be recalculated
+    this._daysOfMonth = null;
   }
 
   calculateNextMonth(): YearAndMonth {
@@ -60,6 +62,17 @@ export class CalendarService {
   }
 
   get daysOfMonth(): number[][] {
+    if (this._daysOfMonth === null) {
+      this._daysOfMonth = this.calculateDaysOfMonth();
+    }
+    return this._daysOfMonth;
+  }
+
+  get daysOfWeek(): string[] {
+    return moment.weekdaysShort();
+  }
+
+  private calculateDaysOfMonth(): number[][] {
     const NUM_WEEK_ROWS = 6;
     let days = [];
 
@@ -87,10 +100,6 @@ export class CalendarService {
       days[++row] = CalendarService.emptyWeek();
     }
     return days;
-  }
-
-  get daysOfWeek(): string[] {
-    return moment.weekdaysShort();
   }
 }
 

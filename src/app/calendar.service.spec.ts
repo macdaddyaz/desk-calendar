@@ -36,7 +36,7 @@ describe('Object: Calendar', () => {
     expect(service.year).toEqual(now.getFullYear());
   });
 
-  it ('should default the month to current if not provided', () => {
+  it('should default the month to current if not provided', () => {
     service.init(2014);
     let now = new Date();
     expect(service.month).toEqual(now.getMonth());
@@ -80,6 +80,18 @@ describe('Object: Calendar', () => {
     expect(days[4][6]).toBeNull();
     expect(days[5][6]).toBeNull();
   });
+
+  it('should recaclulate the days after changing the month and year', () => {
+    service.init(2016, 8);
+    let days = service.daysOfMonth;
+    expect(days[0][4]).toEqual(1);
+    expect(days[4][5]).toEqual(30);
+
+    service.init(2016, 9);
+    days = service.daysOfMonth;
+    expect(days[0][6]).toEqual(1);
+    expect(days[5][1]).toEqual(31);
+  })
 
   it('should report the correct days of the week', () => {
     let daysOfWeek: string[] = service.daysOfWeek;
