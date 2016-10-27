@@ -4,6 +4,13 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { IndexComponent } from './index.component';
+import {Router} from '@angular/router';
+import {CalendarService} from '../calendar.service';
+import {Mock} from 'protractor/built/driverProviders';
+
+class MockRouter {
+  navigateByUrl = jasmine.createSpy('navigateByUrl').and.returnValue(null);
+}
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -11,7 +18,11 @@ describe('IndexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IndexComponent ]
+      declarations: [ IndexComponent ],
+      providers: [
+        {provide: CalendarService, useValue: {}},
+        {provide: Router, useClass: MockRouter}
+      ]
     })
     .compileComponents();
   }));
