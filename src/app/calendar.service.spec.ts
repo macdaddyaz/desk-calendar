@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import {TestBed, inject} from '@angular/core/testing';
-import {CalendarService} from './calendar.service';
+import {CalendarService, yearAndMonth, currentMonth} from './calendar.service';
 
 describe('Object: Calendar', () => {
   let service: CalendarService;
@@ -15,50 +15,36 @@ describe('Object: Calendar', () => {
   });
 
   it('should initialize with the given getMonth and year', () => {
-    service.init(2016, 8);
+    service.goTo(yearAndMonth(2016, 9));
 
-    expect(service.month).toEqual(8);
+    expect(service.month).toEqual(9);
     expect(service.year).toEqual(2016);
     expect(service.monthName).toEqual('September');
 
-    service.init(2014, 2);
+    service.goTo(yearAndMonth(2014, 3));
 
-    expect(service.month).toEqual(2);
+    expect(service.month).toEqual(3);
     expect(service.year).toEqual(2014);
     expect(service.monthName).toEqual('March');
   });
 
   it('should initialize with the current month and year', () => {
-    service.init();
+    service.goTo(currentMonth());
 
     let now = new Date();
-    expect(service.month).toEqual(now.getMonth());
-    expect(service.year).toEqual(now.getFullYear());
-  });
-
-  it('should default the month to current if not provided', () => {
-    service.init(2014);
-    let now = new Date();
-    expect(service.month).toEqual(now.getMonth());
-    expect(service.year).toEqual(2014);
-  });
-
-  it('should default the year to current if not provided', () => {
-    service.init(null, 2);
-    let now = new Date();
-    expect(service.month).toEqual(2);
+    expect(service.month).toEqual(now.getMonth() + 1);
     expect(service.year).toEqual(now.getFullYear());
   });
 
   it('should allow January as a valid month', () => {
-    service.init(2016, 0);
-    expect(service.month).toEqual(0);
+    service.goTo(yearAndMonth(2016, 1));
+    expect(service.month).toEqual(1);
     expect(service.year).toEqual(2016);
   });
 
   it('should generate a 2-dimensional array of days for the current month and year', () => {
     // Test September 2016
-    service.init(2016, 8);
+    service.goTo(yearAndMonth(2016, 9));
 
     let days = service.daysOfMonth;
     expect(days.length).toEqual(6);
@@ -69,7 +55,7 @@ describe('Object: Calendar', () => {
 
   it('should fill in the days in the right order', () => {
     // Test September 2016
-    service.init(2016, 8);
+    service.goTo(yearAndMonth(2016, 9));
 
     let days = service.daysOfMonth;
     expect(days[0][0]).toBeNull();
@@ -82,12 +68,12 @@ describe('Object: Calendar', () => {
   });
 
   it('should recaclulate the days after changing the month and year', () => {
-    service.init(2016, 8);
+    service.goTo(yearAndMonth(2016, 9));
     let days = service.daysOfMonth;
     expect(days[0][4]).toEqual(1);
     expect(days[4][5]).toEqual(30);
 
-    service.init(2016, 9);
+    service.goTo(yearAndMonth(2016, 10));
     days = service.daysOfMonth;
     expect(days[0][6]).toEqual(1);
     expect(days[5][1]).toEqual(31);
@@ -107,34 +93,34 @@ describe('Object: Calendar', () => {
 
   it('should calculate the next month within the same year', () => {
     // Start in October 2016
-    service.init(2016, 9);
-    let {year, month} = service.calculateNextMonth();
+    service.goTo(yearAndMonth(2016, 10));
+    let {year, month} = service.nextMonth;
     expect(year).toEqual(2016);
-    expect(month).toEqual(10);
+    expect(month).toEqual(11);
   });
 
   it('should calculate the next month across year boundaries', () => {
     // Try December 2016 (boundary check)
-    service.init(2016, 11);
-    let {year, month} = service.calculateNextMonth();
+    service.goTo(yearAndMonth(2016, 12));
+    let {year, month} = service.nextMonth;
     expect(year).toEqual(2017);
-    expect(month).toEqual(0);
+    expect(month).toEqual(1);
   });
 
   it('should calculate the previous month within the same year', () => {
     // Start in October 2016
-    service.init(2016, 9);
-    let {year, month} = service.calculatePreviousMonth();
+    service.goTo(yearAndMonth(2016, 10));
+    let {year, month} = service.previousMonth;
     expect(year).toEqual(2016);
-    expect(month).toEqual(8);
+    expect(month).toEqual(9);
   });
 
   it('should calculate the previous month across year boundaries', () => {
     // Try January 2016 (boundary check)
-    service.init(2016, 0);
-    let {year, month} = service.calculatePreviousMonth();
+    service.goTo(yearAndMonth(2016, 1));
+    let {year, month} = service.previousMonth;
     expect(year).toEqual(2015);
-    expect(month).toEqual(11);
+    expect(month).toEqual(12);
   });
 });
 

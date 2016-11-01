@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CalendarService} from '../calendar.service';
+import {currentMonth} from '../calendar.service';
 
 @Component({
   selector: 'app-index',
@@ -9,14 +9,16 @@ import {CalendarService} from '../calendar.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(private router: Router,
-              private calendarService: CalendarService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
     // Initialize the Calendar Service to 'default'
-    this.calendarService.init();
-    this.router.navigate(['/', this.calendarService.year, this.calendarService.month + 1]);
+    let now = this.currentMonth();
+    this.router.navigate(['/', now.year, now.month]);
   }
 
+  currentMonth() {
+    return currentMonth();
+  }
 }

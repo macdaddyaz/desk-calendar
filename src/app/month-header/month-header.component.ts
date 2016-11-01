@@ -22,7 +22,7 @@ export class MonthHeaderComponent implements OnInit {
   private updateFromCalendar() {
     this.year = this.calendarService.year;
     this.month = this.calendarService.monthName;
-    this.next = this.calendarService.calculateNextMonth();
-    this.previous = this.calendarService.calculatePreviousMonth();
+    this.next = this.calendarService.nextMonth;
+    this.previous = this.calendarService.previousMonth;
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CalendarService} from '../calendar.service';
+import {CalendarService, yearAndMonth} from '../calendar.service';
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/map';
 
@@ -26,17 +26,17 @@ export class CalendarComponent implements OnInit {
   }
 
   private updateYearFromParam(yearParam: string) {
-    this.year = yearParam ? +yearParam : this.calendarService.currentYear;
+    this.year = +yearParam;
     this.updateCalendar();
   }
 
   private updateMonthFromParam(monthParam: string) {
-    this.month = monthParam ? +monthParam - 1 : this.calendarService.currentMonth;
+    this.month = +monthParam;
     console.log(`monthParam = ${monthParam}, month = ${this.month}`);
     this.updateCalendar();
   }
 
   private updateCalendar(): void {
-    this.calendarService.init(this.year, this.month);
+    this.calendarService.goTo(yearAndMonth(this.year, this.month));
   }
 }
