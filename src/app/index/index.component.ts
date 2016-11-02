@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {currentMonth} from '../calendar.service';
+import {currentMonth, YearAndMonth} from '../calendar.service';
 
+/**
+ * IndexComponent's sole job is to forward the application to the current month
+ * and year.
+ */
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -13,12 +17,11 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Initialize the Calendar Service to 'default'
-    let now = this.currentMonth();
+    let now: YearAndMonth = this.currentMonth();
     this.router.navigate(['/', now.year, now.month]);
   }
 
-  currentMonth() {
+  currentMonth(): YearAndMonth {
     return currentMonth();
   }
 }
