@@ -1,22 +1,21 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {IndexComponent} from './index.component';
 import {Router} from '@angular/router';
-import {CalendarService} from '../calendar.service';
+import {CalendarService, yearAndMonth, currentMonth} from '../calendar.service';
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate').and.returnValue(null);
 }
 
 class MockCalendar {
-  init = jasmine.createSpy('init');
 }
 
-describe('IndexComponent', () => {
+describe('Component: Index', () => {
   let component: IndexComponent;
   let fixture: ComponentFixture<IndexComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [IndexComponent],
       providers: [
@@ -24,10 +23,8 @@ describe('IndexComponent', () => {
         {provide: Router, useClass: MockRouter}
       ]
     })
-      .compileComponents();
-  }));
+    .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
   });
@@ -36,15 +33,12 @@ describe('IndexComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the calendar to default values and route to the current year/month', () => {
-    let calendarService = fixture.debugElement.injector.get(CalendarService);
-    // Initialize to June 2016
-    calendarService.year = 2016;
-    calendarService.month = 5;
+  it('should route to the current year/month', () => {
+    let currentMonth = spyOn(component, 'currentMonth').and.returnValue(yearAndMonth(2016, 6));
     let router = fixture.debugElement.injector.get(Router);
 
     fixture.detectChanges();
-    expect(calendarService.init).toHaveBeenCalledWith();
+    expect(currentMonth).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/', 2016, 6]);
   });
 });

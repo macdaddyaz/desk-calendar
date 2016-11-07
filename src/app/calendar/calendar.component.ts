@@ -1,19 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {CalendarService} from '../calendar.service';
-import {Router, ActivatedRoute} from '@angular/router';
+import {CalendarService, yearAndMonth, YearAndMonth} from '../calendar.service';
+import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'cal-desk-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
   private year: number;
   private month: number;
+  nextMonth: YearAndMonth;
+  previousMonth: YearAndMonth;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private calendarService: CalendarService) {
   }
 
@@ -27,17 +28,18 @@ export class CalendarComponent implements OnInit {
   }
 
   private updateYearFromParam(yearParam: string) {
-    this.year = yearParam ? +yearParam : this.calendarService.currentYear;
+    this.year = +yearParam;
     this.updateCalendar();
   }
 
   private updateMonthFromParam(monthParam: string) {
-    this.month = monthParam ? +monthParam - 1 : this.calendarService.currentMonth;
-    console.log(`monthParam = ${monthParam}, month = ${this.month}`);
+    this.month = +monthParam;
     this.updateCalendar();
   }
 
   private updateCalendar(): void {
-    this.calendarService.init(this.year, this.month);
+    this.calendarService.goTo(yearAndMonth(this.year, this.month));
+    this.nextMonth = this.calendarService.nextMonth;
+    this.previousMonth = this.calendarService.previousMonth;
   }
 }

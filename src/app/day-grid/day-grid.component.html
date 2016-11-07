@@ -4,7 +4,7 @@
   </tr>
   <tr class="week" *ngFor="let weekOfMonth of daysOfMonth">
     <td class="day" *ngFor="let dayOfMonth of weekOfMonth">
-      <app-day [dayOfMonth]="dayOfMonth"></app-day>
+      <cal-day [dayOfMonth]="dayOfMonth"></cal-day>
     </td>
   </tr>
 </table>

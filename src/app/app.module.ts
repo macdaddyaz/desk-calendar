@@ -4,12 +4,13 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {CalendarComponent} from './calendar/calendar.component';
 import {MonthHeaderComponent} from './month-header/month-header.component';
-import {MonthComponent} from './month/month.component';
+import {DayGridComponent} from './day-grid/day-grid.component';
 import {DayComponent} from './day/day.component';
 import {CalendarService} from './calendar.service';
 import {CalendarRoutingModule} from './calendar-routing.module';
 import {AppComponent} from './app.component';
 import {IndexComponent} from './index/index.component';
+import {MonthNavigationComponent} from './month-navigation/month-navigation.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,9 @@ import {IndexComponent} from './index/index.component';
     CalendarComponent,
     IndexComponent,
     MonthHeaderComponent,
-    MonthComponent,
-    DayComponent
+    DayGridComponent,
+    DayComponent,
+    MonthNavigationComponent
   ],
   providers: [CalendarService],
   bootstrap: [AppComponent]

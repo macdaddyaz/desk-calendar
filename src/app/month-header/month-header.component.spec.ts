@@ -2,20 +2,32 @@
 
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {MonthHeaderComponent} from './month-header.component';
-import {CalendarService} from '../calendar.service';
+import {CalendarService, yearAndMonth} from '../calendar.service';
 import {By} from '@angular/platform-browser';
+import {CalendarTestModule} from '../test/dummy/calendar-test.module';
 
 let component: MonthHeaderComponent;
 let fixture: ComponentFixture<MonthHeaderComponent>;
 let monthYearHeaderElement: HTMLElement;
 
-let stubCalendarService = {};
+const PREV_YEAR = 2010;
+const PREV_MONTH = 4;
+const NEXT_YEAR = 2020;
+const NEXT_MONTH = 11;
+
+let stubCalendarService = {
+  nextMonth: yearAndMonth(NEXT_YEAR, NEXT_MONTH),
+  previousMonth: yearAndMonth(PREV_YEAR, PREV_MONTH)
+};
 
 describe('Component: MonthHeader', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MonthHeaderComponent],
-      providers: [{provide: CalendarService, useValue: stubCalendarService}]
+      imports: [CalendarTestModule],
+      providers: [
+        {provide: CalendarService, useValue: stubCalendarService}
+      ]
     });
 
     fixture = TestBed.createComponent(MonthHeaderComponent);
@@ -36,6 +48,6 @@ describe('Component: MonthHeader', () => {
     fixture.detectChanges();
     expect(component.month).toEqual('May');
     expect(component.year).toEqual(2011);
-    expect(monthYearHeaderElement.textContent).toEqual('May 2011');
+    expect(monthYearHeaderElement.textContent).toContain('May 2011');
   });
 });
