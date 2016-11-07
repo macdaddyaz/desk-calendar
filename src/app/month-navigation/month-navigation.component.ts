@@ -1,6 +1,5 @@
-import {Component, OnInit, Input, Output} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {YearAndMonth} from '../calendar.service';
-import {EventEmitter} from '@angular/common/src/facade/async';
 import {Router} from '@angular/router';
 
 @Component({

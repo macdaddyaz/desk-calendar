@@ -1,4 +1,4 @@
-import {Component, OnInit, DoCheck} from '@angular/core';
+import {Component, DoCheck} from '@angular/core';
 import {CalendarService} from '../calendar.service';
 
 @Component({

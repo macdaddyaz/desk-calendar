@@ -10,7 +10,7 @@ import {CalendarService} from './calendar.service';
 import {CalendarRoutingModule} from './calendar-routing.module';
 import {AppComponent} from './app.component';
 import {IndexComponent} from './index/index.component';
-import { MonthNavigationComponent } from './month-navigation/month-navigation.component';
+import {MonthNavigationComponent} from './month-navigation/month-navigation.component';
 
 @NgModule({
   imports: [

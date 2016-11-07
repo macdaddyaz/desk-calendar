@@ -29,13 +29,11 @@ export class CalendarComponent implements OnInit {
 
   private updateYearFromParam(yearParam: string) {
     this.year = +yearParam;
-    console.log(`yearParam = ${yearParam}, year = ${this.year}`);
     this.updateCalendar();
   }
 
   private updateMonthFromParam(monthParam: string) {
     this.month = +monthParam;
-    console.log(`monthParam = ${monthParam}, month = ${this.month}`);
     this.updateCalendar();
   }
 

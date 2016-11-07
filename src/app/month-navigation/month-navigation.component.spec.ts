@@ -2,9 +2,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MonthNavigationComponent} from './month-navigation.component';
 import {yearAndMonth} from '../calendar.service';
+import {Router} from '@angular/router';
 import createSpy = jasmine.createSpy;
 import createSpyObj = jasmine.createSpyObj;
-import {Router} from '@angular/router';
 
 let routerStub = {
   navigate: () => {
