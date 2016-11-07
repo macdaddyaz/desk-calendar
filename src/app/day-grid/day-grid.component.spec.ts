@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import {TestBed, ComponentFixture} from '@angular/core/testing';
-import {MonthComponent} from './month.component';
+import {DayGridComponent} from './day-grid.component';
 import {CalendarComponent} from '../calendar/calendar.component';
 import {MonthHeaderComponent} from '../month-header/month-header.component';
 import {DayComponent} from '../day/day.component';
@@ -11,8 +11,8 @@ import {DebugElement} from '@angular/core';
 import {CalendarTestModule} from '../test/dummy/calendar-test.module';
 import {MonthNavigationComponent} from '../month-navigation/month-navigation.component';
 
-let component: MonthComponent;
-let fixture: ComponentFixture<MonthComponent>;
+let component: DayGridComponent;
+let fixture: ComponentFixture<DayGridComponent>;
 
 // stub CalendarService
 const calendarServiceStub = {
@@ -23,12 +23,12 @@ const calendarServiceStub = {
 describe('Component: Month', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CalendarComponent, MonthHeaderComponent, MonthNavigationComponent, MonthComponent, DayComponent],
+      declarations: [CalendarComponent, MonthHeaderComponent, MonthNavigationComponent, DayGridComponent, DayComponent],
       imports: [CalendarTestModule],
       providers: [{provide: CalendarService, useValue: calendarServiceStub}]
     });
 
-    fixture = TestBed.createComponent(MonthComponent);
+    fixture = TestBed.createComponent(DayGridComponent);
     component = fixture.componentInstance;
   });
 

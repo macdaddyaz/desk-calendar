@@ -3,10 +3,10 @@ import {CalendarService} from '../calendar.service';
 
 @Component({
   selector: 'cal-day-grid',
-  templateUrl: './month.component.html',
-  styleUrls: ['./month.component.css']
+  templateUrl: './day-grid.component.html',
+  styleUrls: ['./day-grid.component.css']
 })
-export class MonthComponent implements OnInit {
+export class DayGridComponent implements OnInit {
   daysOfWeek: string[];
   daysOfMonth: number[][];
 
