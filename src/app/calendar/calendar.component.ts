@@ -4,7 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'cal-desk-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })

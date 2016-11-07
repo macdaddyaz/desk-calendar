@@ -3,7 +3,7 @@ import {YearAndMonth} from '../calendar.service';
 import {EventEmitter} from '@angular/common/src/facade/async';
 
 @Component({
-  selector: 'month-nav',
+  selector: 'cal-month-nav',
   templateUrl: './month-navigation.component.html',
   styleUrls: ['./month-navigation.component.css']
 })

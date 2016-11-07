@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CalendarService, YearAndMonth} from '../calendar.service';
 
 @Component({
-  selector: 'app-month-header',
+  selector: 'cal-month-header',
   templateUrl: './month-header.component.html',
   styleUrls: ['./month-header.component.css']
 })

@@ -7,7 +7,7 @@ import {currentMonth, YearAndMonth} from '../calendar.service';
  * and year.
  */
 @Component({
-  selector: 'app-index',
+  selector: 'cal-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })

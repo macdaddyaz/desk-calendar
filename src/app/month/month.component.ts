@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CalendarService} from '../calendar.service';
 
 @Component({
-  selector: 'app-month',
+  selector: 'cal-day-grid',
   templateUrl: './month.component.html',
   styleUrls: ['./month.component.css']
 })
