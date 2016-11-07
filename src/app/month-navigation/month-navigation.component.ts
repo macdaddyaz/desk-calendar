@@ -21,7 +21,6 @@ export class MonthNavigationComponent implements OnInit {
   }
 
   navClicked(): void {
-    console.log("Nav clicked");
     this.navigationTriggered.emit({navigationTarget: this.navigateTo});
   }
 }
