@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, DoCheck} from '@angular/core';
 import {CalendarService} from '../calendar.service';
 
 @Component({
@@ -6,14 +6,14 @@ import {CalendarService} from '../calendar.service';
   templateUrl: './day-grid.component.html',
   styleUrls: ['./day-grid.component.css']
 })
-export class DayGridComponent implements OnInit {
+export class DayGridComponent implements DoCheck {
   daysOfWeek: string[];
   daysOfMonth: number[][];
 
   constructor(private calendarService: CalendarService) {
   }
 
-  ngOnInit() {
+  ngDoCheck() {
     this.daysOfWeek = this.calendarService.daysOfWeek;
     this.daysOfMonth = this.calendarService.daysOfMonth;
   }
