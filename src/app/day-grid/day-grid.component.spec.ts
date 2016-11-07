@@ -20,7 +20,7 @@ const calendarServiceStub = {
   daysOfMonth: []
 };
 
-describe('Component: Month', () => {
+describe('Component: DayGrid', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent, MonthHeaderComponent, MonthNavigationComponent, DayGridComponent, DayComponent],

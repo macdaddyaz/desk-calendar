@@ -50,24 +50,4 @@ describe('Component: MonthHeader', () => {
     expect(component.year).toEqual(2011);
     expect(monthYearHeaderElement.textContent).toContain('May 2011');
   });
-
-  it('should populate the next month values from the CalendarService', () => {
-    let calendarService = fixture.debugElement.injector.get(CalendarService);
-    calendarService.year = 2015;
-    calendarService.monthName = 'June';
-
-    fixture.detectChanges();
-    expect(component.next.year).toEqual(NEXT_YEAR);
-    expect(component.next.month).toEqual(NEXT_MONTH);
-  });
-
-  it('should populate the previous month values from the CalendarService', () => {
-    let calendarService = fixture.debugElement.injector.get(CalendarService);
-    calendarService.year = 2015;
-    calendarService.monthName = 'June';
-
-    fixture.detectChanges();
-    expect(component.previous.year).toEqual(PREV_YEAR);
-    expect(component.previous.month).toEqual(PREV_MONTH);
-  });
 });

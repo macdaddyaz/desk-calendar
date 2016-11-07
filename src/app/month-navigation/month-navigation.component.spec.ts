@@ -4,6 +4,12 @@ import {MonthNavigationComponent} from './month-navigation.component';
 import {yearAndMonth} from '../calendar.service';
 import createSpy = jasmine.createSpy;
 import createSpyObj = jasmine.createSpyObj;
+import {Router} from '@angular/router';
+
+let routerStub = {
+  navigate: () => {
+  }
+};
 
 describe('Component: MonthNavigation', () => {
   let component: MonthNavigationComponent;
@@ -11,7 +17,10 @@ describe('Component: MonthNavigation', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MonthNavigationComponent]
+      declarations: [MonthNavigationComponent],
+      providers: [
+        {provide: Router, useValue: routerStub}
+      ]
     })
       .compileComponents();
     fixture = TestBed.createComponent(MonthNavigationComponent);
@@ -23,11 +32,11 @@ describe('Component: MonthNavigation', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit an event when the listener is invoked', () => {
+  it('should navigate when the listener is invoked', () => {
+    let router = fixture.debugElement.injector.get(Router);
+    router.navigate = createSpy('Router.navigate spy');
     component.navigateTo = yearAndMonth(2016, 11);
-    let listener = createSpy('navigationHandler');
-    component.navigationTriggered.subscribe(listener);
     component.navClicked();
-    expect(listener).toHaveBeenCalledWith({navigationTarget: component.navigateTo});
+    expect(router.navigate).toHaveBeenCalledWith(['/', 2016, 11]);
   });
 });

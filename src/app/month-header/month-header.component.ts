@@ -9,8 +9,6 @@ import {CalendarService, YearAndMonth} from '../calendar.service';
 export class MonthHeaderComponent implements OnInit {
   month: string = null;
   year: number = Number.MIN_SAFE_INTEGER;
-  next: YearAndMonth;
-  previous: YearAndMonth;
 
   constructor(private calendarService: CalendarService) {
   }
@@ -22,7 +20,5 @@ export class MonthHeaderComponent implements OnInit {
   private updateFromCalendar() {
     this.year = this.calendarService.year;
     this.month = this.calendarService.monthName;
-    this.next = this.calendarService.nextMonth;
-    this.previous = this.calendarService.previousMonth;
   }
 }
