@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.18",
+    "angular-cli": "^1.0.0-beta.19-3",
     "codelyzer": "1.0.0-beta.1",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
@@ -40,7 +40,7 @@
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "4.0.9",
     "ts-node": "1.2.1",
-    "tslint": "3.13.0",
-    "typescript": "~2.0.3"
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.8"
   }
 }
