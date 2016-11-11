@@ -17,7 +17,7 @@ This project was generated with [Angular CLI](https://cli.angular.io/).
 
 You need to have the following dependencies installed on your system:
 1. [Node.JS](https://nodejs.org/en/download/)
-1. [Angular CLI](https://github.com/angular/angular-cli#installation)
+2. [Angular CLI](https://github.com/angular/angular-cli#installation)
 
 After installation, ensure that the `ng` command is available on your PATH.
 
