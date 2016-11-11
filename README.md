@@ -5,6 +5,7 @@
 Desk Calendar is a small Angular 2 application that, cleverly enough, puts a desk calendar in your browser. It shows the months as a desk or wall calendar would, allowing navigation from month to month.
 
 While providing real functionality, it's primary purpose is to act as a self-tutorial and test bed of some key Web application technologies:
+
 * Angular 2
 * TypeScript
 * Bootstrap 4
@@ -16,8 +17,9 @@ This project was generated with [Angular CLI](https://cli.angular.io/).
 ## Prerequisites
 
 You need to have the following dependencies installed on your system:
+
 1. [Node.JS](https://nodejs.org/en/download/)
-2. [Angular CLI](https://github.com/angular/angular-cli#installation)
+1. [Angular CLI](https://github.com/angular/angular-cli#installation)
 
 After installation, ensure that the `ng` command is available on your PATH.
 
