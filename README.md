@@ -1,10 +1,28 @@
-# DeskCalendar
+# Desk Calendar
 
 [![Build Status](https://travis-ci.org/macdaddyaz/desk-calendar.svg?branch=master)](https://travis-ci.org/macdaddyaz/desk-calendar)
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli).
+Desk Calendar is a small Angular 2 application that, cleverly enough, puts a desk calendar in your browser. It shows the months as a desk or wall calendar would, allowing navigation from month to month.
+
+While providing real functionality, it's primary purpose is to act as a self-tutorial and test bed of some key Web application technologies:
+* Angular 2
+* TypeScript
+* Bootstrap 4
+
+I chose a desk calendar for a few reasons. For one, I'm fascinated by time and dates and calendars. Also, it's a nice simple problem domain that I understand well. At the same time, it presents some interesting implementation challenges.
+
+This project was generated with [Angular CLI](https://cli.angular.io/).
+
+## Prerequisites
+
+You need to have the following dependencies installed on your system:
+1. [Node.JS](https://nodejs.org/en/download/)
+1. [Angular CLI](https://github.com/angular/angular-cli#installation)
+
+After installation, ensure that the `ng` command is available on your PATH.
 
 ## Development server
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
@@ -30,4 +48,4 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 
 ## Further help
 
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
