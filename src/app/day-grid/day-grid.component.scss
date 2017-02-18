@@ -1,0 +1,5 @@
+@import "../../calendar-layout";
+
+:host {
+  @include horizontal-flex-container(1);
+}

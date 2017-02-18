@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'cal-month-nav',
   templateUrl: './month-navigation.component.html',
-  styleUrls: ['./month-navigation.component.css']
+  styleUrls: ['month-navigation.component.scss']
 })
 export class MonthNavigationComponent implements OnInit {
 

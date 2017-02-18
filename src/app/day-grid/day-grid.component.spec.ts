@@ -42,7 +42,7 @@ describe('Component: DayGrid', () => {
     calendarService.daysOfWeek = weekdays;
     fixture.detectChanges();
 
-    let weekdayRowDebug: DebugElement = fixture.debugElement.query(By.css('tr#weekday-labels'));
+    let weekdayRowDebug: DebugElement = fixture.debugElement.query(By.css('div.weekday-headers'));
     let weekdaysDebug: DebugElement[] = weekdayRowDebug.children;
     expect(weekdaysDebug.length).toEqual(weekdays.length);
     weekdays.forEach((weekday, i) => expect(weekdaysDebug[i].nativeElement.textContent).toEqual(weekday));
@@ -60,10 +60,10 @@ describe('Component: DayGrid', () => {
         ];
     fixture.detectChanges();
 
-    let monthRowsDebug: DebugElement[] = fixture.debugElement.queryAll(By.css('tr.week'));
+    let monthRowsDebug: DebugElement[] = fixture.debugElement.queryAll(By.css('div.weekdays'));
     expect(monthRowsDebug.length).toEqual(6);
     monthRowsDebug.forEach((rowDebug: DebugElement, index: number) => {
-      let daysDebug: DebugElement[] = rowDebug.queryAll(By.css('td.day'));
+      let daysDebug: DebugElement[] = rowDebug.queryAll(By.css('div.weekday'));
       expect(daysDebug.length).toEqual(7);
     });
   });

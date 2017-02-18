@@ -39,7 +39,7 @@ describe('Component: Day', () => {
   it('should show nothing when day of month is null', () => {
     component.dayOfMonth = null;
     fixture.detectChanges();
-    let dayOfMonthDebug: DebugElement = fixture.debugElement.query(By.css('.day-of-month-val'));
+    let dayOfMonthDebug: DebugElement = fixture.debugElement.query(By.css('.day-of-month'));
     expect(dayOfMonthDebug).not.toBeNull();
     expect(dayOfMonthDebug.nativeElement.textContent).toEqual('');
   });

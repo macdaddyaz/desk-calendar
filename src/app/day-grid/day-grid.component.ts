@@ -4,7 +4,7 @@ import {CalendarService} from '../calendar.service';
 @Component({
   selector: 'cal-day-grid',
   templateUrl: './day-grid.component.html',
-  styleUrls: ['./day-grid.component.css']
+  styleUrls: ['day-grid.component.scss']
 })
 export class DayGridComponent implements DoCheck {
   daysOfWeek: string[];
