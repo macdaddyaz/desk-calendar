@@ -4,7 +4,7 @@ import {CalendarService} from '../calendar.service';
 @Component({
   selector: 'cal-month-header',
   templateUrl: './month-header.component.html',
-  styleUrls: ['./month-header.component.css']
+  styleUrls: ['month-header.component.scss']
 })
 export class MonthHeaderComponent implements DoCheck {
   month: string = null;

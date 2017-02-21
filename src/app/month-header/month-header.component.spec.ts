@@ -32,7 +32,7 @@ describe('Component: MonthHeader', () => {
 
     fixture = TestBed.createComponent(MonthHeaderComponent);
     component = fixture.componentInstance;
-    monthYearHeaderElement = fixture.debugElement.query(By.css('h1.month-year-header')).nativeElement;
+    monthYearHeaderElement = fixture.debugElement.query(By.css('h1.month-and-year-header')).nativeElement;
   });
 
   it('should create an instance', () => {

@@ -18,7 +18,9 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.css",
+        "calendar-layout.scss",
+        "calendar-theme.scss"
       ],
       "scripts": [],
       "environments": {

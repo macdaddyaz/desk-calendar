@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'cal-desk-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
   private year: number;
