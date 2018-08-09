@@ -26,7 +26,7 @@ describe('Component: Calendar', () => {
   });
 
   it('should create an instance', () => {
-    let component = TestBed.createComponent(CalendarComponent);
+    const component = TestBed.createComponent(CalendarComponent);
     expect(component).toBeTruthy();
   });
 });

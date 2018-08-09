@@ -17,7 +17,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    let now: YearAndMonth = this.currentMonth();
+    const now: YearAndMonth = this.currentMonth();
     this.router.navigate(['/', now.year, now.month]);
   }
 

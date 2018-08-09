@@ -39,7 +39,7 @@ export function yearAndMonth(year: number, month: number): YearAndMonth {
  * @returns {YearAndMonth} The composite year/month value
  */
 export function currentMonth(): YearAndMonth {
-  let now = moment();
+  const now = moment();
   return friendly(yearAndMonth(now.year(), now.month()));
 }
 
@@ -60,11 +60,11 @@ export class CalendarService {
 
   /**
    * Navigates the service to the given year/month.
-   * @param yearAndMonth
+   * @param friendlyVal
    */
-  goTo(yearAndMonth: YearAndMonth): void {
-    this._friendly = yearAndMonth;
-    this._real = real(yearAndMonth);
+  goTo(friendlyVal: YearAndMonth): void {
+    this._friendly = friendlyVal;
+    this._real = real(friendlyVal);
     // Clear out the cached value so that it will be recalculated
     this._daysOfMonth = null;
   }
@@ -77,8 +77,7 @@ export class CalendarService {
    */
   get nextMonth(): YearAndMonth {
     const newMonth = this.magicMoment().add(1, 'months');
-    const next = friendly(yearAndMonth(newMonth.year(), newMonth.month()));
-    return next;
+    return friendly(yearAndMonth(newMonth.year(), newMonth.month()));
   }
 
   /**
@@ -89,8 +88,7 @@ export class CalendarService {
    */
   get previousMonth(): YearAndMonth {
     const newMonth = this.magicMoment().add(-1, 'months');
-    const prev = friendly(yearAndMonth(newMonth.year(), newMonth.month()));
-    return prev;
+    return friendly(yearAndMonth(newMonth.year(), newMonth.month()));
   }
 
   /**
@@ -238,21 +236,21 @@ class YearAndMonthValue implements YearAndMonth {
 /**
  * Converts a `YearAndMonth` that is assumed to be 'friendly' into a 'real'
  * value.
- * @param friendly
+ * @param friendlyVal
  * @returns {YearAndMonth}
  */
-function real(friendly: YearAndMonth): YearAndMonth {
-  return new YearAndMonthValue(friendly.year, friendly.month - 1);
+function real(friendlyVal: YearAndMonth): YearAndMonth {
+  return new YearAndMonthValue(friendlyVal.year, friendlyVal.month - 1);
 }
 
 /**
  * Converts a `YearAndMonth` that is assumed to be 'real' into a 'friendly'
  * value.
- * @param real
+ * @param realVal
  * @returns {YearAndMonth}
  */
-function friendly(real: YearAndMonth): YearAndMonth {
-  return new YearAndMonthValue(real.year, real.month + 1);
+function friendly(realVal: YearAndMonth): YearAndMonth {
+  return new YearAndMonthValue(realVal.year, realVal.month + 1);
 }
 
 /**

@@ -1,10 +1,10 @@
-/* tslint:disable:no-unused-variable */
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {IndexComponent} from './index.component';
 import {Router} from '@angular/router';
-import {CalendarService, yearAndMonth, currentMonth} from '../calendar.service';
+import {CalendarService, yearAndMonth} from '../calendar.service';
 
 class MockRouter {
+  // tslint:disable-next-line:no-unused-variable
   navigate = jasmine.createSpy('navigate').and.returnValue(null);
 }
 
@@ -34,8 +34,8 @@ describe('Component: Index', () => {
   });
 
   it('should route to the current year/month', () => {
-    let currentMonth = spyOn(component, 'currentMonth').and.returnValue(yearAndMonth(2016, 6));
-    let router = fixture.debugElement.injector.get(Router);
+    const currentMonth = spyOn(component, 'currentMonth').and.returnValue(yearAndMonth(2016, 6));
+    const router = fixture.debugElement.injector.get(Router);
 
     fixture.detectChanges();
     expect(currentMonth).toHaveBeenCalled();

@@ -31,7 +31,7 @@ describe('Object: Calendar', () => {
   it('should initialize with the current month and year', () => {
     service.goTo(currentMonth());
 
-    let now = new Date();
+    const now = new Date();
     expect(service.month).toEqual(now.getMonth() + 1);
     expect(service.year).toEqual(now.getFullYear());
   });
@@ -46,7 +46,7 @@ describe('Object: Calendar', () => {
     // Test September 2016
     service.goTo(yearAndMonth(2016, 9));
 
-    let days = service.daysOfMonth;
+    const days = service.daysOfMonth;
     expect(days.length).toEqual(6);
     days.forEach((item) => {
       expect(item.length).toEqual(7);
@@ -57,7 +57,7 @@ describe('Object: Calendar', () => {
     // Test September 2016
     service.goTo(yearAndMonth(2016, 9));
 
-    let days = service.daysOfMonth;
+    const days = service.daysOfMonth;
     expect(days[0][0]).toBeNull();
     expect(days[0][4]).toEqual(1);
     expect(days[2][6]).toEqual(17);
@@ -80,7 +80,7 @@ describe('Object: Calendar', () => {
   });
 
   it('should report the correct days of the week', () => {
-    let daysOfWeek: string[] = service.daysOfWeek;
+    const daysOfWeek: string[] = service.daysOfWeek;
     expect(daysOfWeek.length).toEqual(7);
     expect(daysOfWeek[0]).toEqual('Sun');
     expect(daysOfWeek[1]).toEqual('Mon');
@@ -94,7 +94,7 @@ describe('Object: Calendar', () => {
   it('should calculate the next month within the same year', () => {
     // Start in October 2016
     service.goTo(yearAndMonth(2016, 10));
-    let {year, month} = service.nextMonth;
+    const {year, month} = service.nextMonth;
     expect(year).toEqual(2016);
     expect(month).toEqual(11);
   });
@@ -102,7 +102,7 @@ describe('Object: Calendar', () => {
   it('should calculate the next month across year boundaries', () => {
     // Try December 2016 (boundary check)
     service.goTo(yearAndMonth(2016, 12));
-    let {year, month} = service.nextMonth;
+    const {year, month} = service.nextMonth;
     expect(year).toEqual(2017);
     expect(month).toEqual(1);
   });
@@ -110,7 +110,7 @@ describe('Object: Calendar', () => {
   it('should calculate the previous month within the same year', () => {
     // Start in October 2016
     service.goTo(yearAndMonth(2016, 10));
-    let {year, month} = service.previousMonth;
+    const {year, month} = service.previousMonth;
     expect(year).toEqual(2016);
     expect(month).toEqual(9);
   });
@@ -118,7 +118,7 @@ describe('Object: Calendar', () => {
   it('should calculate the previous month across year boundaries', () => {
     // Try January 2016 (boundary check)
     service.goTo(yearAndMonth(2016, 1));
-    let {year, month} = service.previousMonth;
+    const {year, month} = service.previousMonth;
     expect(year).toEqual(2015);
     expect(month).toEqual(12);
   });
