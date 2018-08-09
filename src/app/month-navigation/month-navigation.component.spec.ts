@@ -22,12 +22,10 @@ describe('Component: MonthNavigation', () => {
         {provide: Router, useValue: routerStub}
       ]
     })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(MonthNavigationComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+      .compileComponents();
+    fixture = TestBed.createComponent(MonthNavigationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

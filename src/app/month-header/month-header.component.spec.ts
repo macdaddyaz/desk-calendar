@@ -16,6 +16,8 @@ const NEXT_YEAR = 2020;
 const NEXT_MONTH = 11;
 
 const stubCalendarService = {
+  monthName: null,
+  year: 0,
   nextMonth: yearAndMonth(NEXT_YEAR, NEXT_MONTH),
   previousMonth: yearAndMonth(PREV_YEAR, PREV_MONTH)
 };
@@ -41,8 +43,9 @@ describe('Component: MonthHeader', () => {
   });
 
   it('should show the month and year from the CalendarService', () => {
-    const calendarService = fixture.debugElement.injector.get(CalendarService);
-    calendarService.goTo(yearAndMonth(2011, 5));
+    const calendarService: typeof stubCalendarService = fixture.debugElement.injector.get(CalendarService);
+    calendarService.year = 2011;
+    calendarService.monthName = 'May';
 
     fixture.detectChanges();
     expect(component.month).toEqual('May');
