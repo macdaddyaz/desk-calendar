@@ -6,9 +6,11 @@
 
 # dependencies
 /node_modules
+yarn-error.log
 
 # IDEs and editors
 /.idea
+*.iml
 .project
 .classpath
 .c9/

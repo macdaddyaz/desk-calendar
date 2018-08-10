@@ -2,7 +2,7 @@
 
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {DayComponent} from './day.component';
-import {CalendarComponent} from '../calendar/calendar.component';
+import {CalendarComponent} from '..';
 import {MonthHeaderComponent} from '../month-header/month-header.component';
 import {DayGridComponent} from '../day-grid/day-grid.component';
 import {By} from '@angular/platform-browser';
@@ -31,7 +31,7 @@ describe('Component: Day', () => {
   it('should show the day of month as a number', () => {
     component.dayOfMonth = 4;
     fixture.detectChanges();
-    let dayOfMonthDebug: DebugElement = fixture.debugElement.query(By.css('.day-of-month-val'));
+    const dayOfMonthDebug: DebugElement = fixture.debugElement.query(By.css('.day-of-month-val'));
     expect(dayOfMonthDebug).not.toBeNull();
     expect(dayOfMonthDebug.nativeElement.textContent).toEqual('4');
   });
@@ -39,7 +39,7 @@ describe('Component: Day', () => {
   it('should force an invisible nbsp when day of month is null', () => {
     component.dayOfMonth = null;
     fixture.detectChanges();
-    let dayOfMonthDebug: DebugElement = fixture.debugElement.query(By.css('.day-of-month'));
+    const dayOfMonthDebug: DebugElement = fixture.debugElement.query(By.css('.day-of-month'));
     expect(dayOfMonthDebug).not.toBeNull();
     // &nbsp; generates a character with hexcode 'a0'
     expect(dayOfMonthDebug.nativeElement.textContent).toEqual('\xa0');

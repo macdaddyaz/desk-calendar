@@ -16,7 +16,6 @@ import {MonthNavigationComponent} from './month-navigation/month-navigation.comp
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     CalendarRoutingModule
   ],
   declarations: [

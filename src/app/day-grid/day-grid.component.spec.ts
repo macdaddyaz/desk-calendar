@@ -2,7 +2,7 @@
 
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {DayGridComponent} from './day-grid.component';
-import {CalendarComponent} from '../calendar/calendar.component';
+import {CalendarComponent} from '..';
 import {MonthHeaderComponent} from '../month-header/month-header.component';
 import {DayComponent} from '../day/day.component';
 import {CalendarService} from '../calendar.service';
@@ -37,19 +37,19 @@ describe('Component: DayGrid', () => {
   });
 
   it('should label the days of the week using the calendar service', () => {
-    let calendarService = fixture.debugElement.injector.get(CalendarService);
-    let weekdays = ['Magic', 'Kareem', 'Shaq', 'Kobe'];
+    const calendarService: typeof calendarServiceStub = fixture.debugElement.injector.get(CalendarService);
+    const weekdays = ['Magic', 'Kareem', 'Shaq', 'Kobe'];
     calendarService.daysOfWeek = weekdays;
     fixture.detectChanges();
 
-    let weekdayRowDebug: DebugElement = fixture.debugElement.query(By.css('div.weekday-headers'));
-    let weekdaysDebug: DebugElement[] = weekdayRowDebug.children;
+    const weekdayRowDebug: DebugElement = fixture.debugElement.query(By.css('div.weekday-headers'));
+    const weekdaysDebug: DebugElement[] = weekdayRowDebug.children;
     expect(weekdaysDebug.length).toEqual(weekdays.length);
     weekdays.forEach((weekday, i) => expect(weekdaysDebug[i].nativeElement.textContent).toEqual(weekday));
   });
 
   it('should create 6 rows and 42 day cells', () => {
-    let calendarService = fixture.debugElement.injector.get(CalendarService);
+    const calendarService: typeof calendarServiceStub = fixture.debugElement.injector.get(CalendarService);
     // set up a structure that looks like a real month
     calendarService.daysOfMonth = [[null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null],
@@ -60,20 +60,20 @@ describe('Component: DayGrid', () => {
         ];
     fixture.detectChanges();
 
-    let monthRowsDebug: DebugElement[] = fixture.debugElement.queryAll(By.css('div.weekdays'));
+    const monthRowsDebug: DebugElement[] = fixture.debugElement.queryAll(By.css('div.weekdays'));
     expect(monthRowsDebug.length).toEqual(6);
-    monthRowsDebug.forEach((rowDebug: DebugElement, index: number) => {
-      let daysDebug: DebugElement[] = rowDebug.queryAll(By.css('div.weekday'));
+    monthRowsDebug.forEach((rowDebug: DebugElement) => {
+      const daysDebug: DebugElement[] = rowDebug.queryAll(By.css('div.weekday'));
       expect(daysDebug.length).toEqual(7);
     });
   });
 
   it('should initialize the day components with the day from the calendar', () => {
-    let calendarService = fixture.debugElement.injector.get(CalendarService);
+    const calendarService: typeof calendarServiceStub = fixture.debugElement.injector.get(CalendarService);
     calendarService.daysOfMonth = [[null, 1, 2, 3], [10, 20, 30, 40], [100, 200, null, null]];
     fixture.detectChanges();
 
-    let dayCompsDebug: DebugElement[] = fixture.debugElement.queryAll(By.directive(DayComponent));
+    const dayCompsDebug: DebugElement[] = fixture.debugElement.queryAll(By.directive(DayComponent));
     expect(dayCompsDebug[0].componentInstance.dayOfMonth).toBeNull();
     expect(dayCompsDebug[1].componentInstance.dayOfMonth).toEqual(1);
     expect(dayCompsDebug[6].componentInstance.dayOfMonth).toEqual(30);

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {CalendarService, yearAndMonth, YearAndMonth} from '../calendar.service';
 import {ActivatedRoute} from '@angular/router';
-import 'rxjs/add/operator/map';
+import {map} from 'rxjs/operators';
+import {CalendarService, yearAndMonth, YearAndMonth} from '../calendar.service';
 
 @Component({
   selector: 'cal-desk-calendar',
@@ -9,21 +9,21 @@ import 'rxjs/add/operator/map';
   styleUrls: ['calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  private year: number;
-  private month: number;
   nextMonth: YearAndMonth;
   previousMonth: YearAndMonth;
+  private year: number;
+  private month: number;
 
   constructor(private route: ActivatedRoute,
               private calendarService: CalendarService) {
   }
 
   ngOnInit() {
-    this.route.params
-      .map(params => <string>params['year'])
+    this.route.params.pipe(
+      map(params => <string>params['year']))
       .subscribe(year => this.updateYearFromParam(year));
-    this.route.params
-      .map(params => <string>params['month'])
+    this.route.params.pipe(
+      map(params => <string>params['month']))
       .subscribe(month => this.updateMonthFromParam(month));
   }
 
