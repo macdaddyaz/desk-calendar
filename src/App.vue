@@ -69,28 +69,26 @@
   </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld';
+<script lang="ts">
+  import {Component, Vue} from 'vue-property-decorator';
+  import HelloWorld from '@/components/HelloWorld.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
-  data() {
-    return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire',
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
-    };
-  },
-};
+  @Component({
+    components: {
+      HelloWorld,
+    },
+  })
+  export default class App extends Vue {
+    private clipped: boolean = false;
+    private drawer: boolean = true;
+    private fixed: boolean = false;
+    private items = [{
+      icon: 'bubble_chart',
+      title: 'Inspire',
+    }];
+    private miniVariant: boolean = false;
+    private right: boolean = true;
+    private rightDrawer: boolean = false;
+    private title: string = 'Desk Calendar';
+  }
 </script>
