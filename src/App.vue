@@ -45,7 +45,7 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <HelloWorld/>
+      <HelloWorld msg="A very profound message"/>
     </v-content>
     <v-navigation-drawer
       temporary
