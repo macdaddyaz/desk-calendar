@@ -1,15 +1,16 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+import colors from 'vuetify/es5/util/colors';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#64B5F6',
-    secondary: '#E3F2FD',
-    accent: '#26A69A',
-    error: '#F44336',
-    warning: '#FF9800',
-    info: '#2196f3',
-    success: '#4caf50',
+    primary: colors.green.base,
+    secondary: colors.green.lighten3,
+    accent: colors.blue.base,
+    error: colors.red.base,
+    warning: colors.yellow.base,
+    info: colors.purple.base,
+    success: colors.green.base,
   },
 });
