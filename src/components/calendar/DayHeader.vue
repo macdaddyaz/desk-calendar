@@ -12,7 +12,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .v-chip {
     height: 24px;
     margin-left: -4px;
