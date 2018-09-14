@@ -1,8 +1,11 @@
 <template>
   <v-footer app height="4.0em">
-    <v-chip>&copy; 2018 Eric McIntyre</v-chip>
+    <v-btn fab small color="secondary">
+      <v-icon>info</v-icon>
+    </v-btn>
+    <v-chip color="secondary" outline>Desk Calendar, &copy; 2018 Eric McIntyre</v-chip>
     <v-spacer></v-spacer>
-    <v-btn fab small>
+    <v-btn fab dark small color="accent">
       <v-icon>settings</v-icon>
     </v-btn>
   </v-footer>

@@ -5,12 +5,12 @@ import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.green.base,
-    secondary: colors.green.lighten3,
-    accent: colors.blue.base,
+    primary: colors.indigo.base,
+    secondary: colors.indigo.lighten3,
+    accent: colors.blueGrey.base,
     error: colors.red.base,
     warning: colors.yellow.base,
-    info: colors.purple.base,
+    info: colors.blue.base,
     success: colors.green.base,
   },
 });
