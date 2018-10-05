@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts">
-  import {Component, Prop, Vue} from 'vue-property-decorator';
   import DayHeader from '@/components/calendar/DayHeader.vue';
   import DaySlot from '@/components/calendar/DaySlot.vue';
+  import {Component, Prop, Vue} from 'vue-property-decorator';
 
   @Component({
     components: {

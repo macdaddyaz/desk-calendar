@@ -1,7 +1,7 @@
 <template>
   <v-toolbar app color="primary">
     <v-spacer></v-spacer>
-    <v-btn light fab small color="accent" >
+    <v-btn light fab small color="accent">
       <v-icon>arrow_back_ios</v-icon>
     </v-btn>
     <v-spacer></v-spacer>

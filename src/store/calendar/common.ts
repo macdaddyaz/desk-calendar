@@ -1,6 +1,5 @@
 import {CalendarMonth} from '@/store/types';
-import moment from 'moment';
-import {Moment} from 'moment';
+import moment, {Moment} from 'moment';
 
 export function toMoment(yearAndMonth: CalendarMonth): Moment {
   return moment().month(yearAndMonth.month).year(yearAndMonth.year);

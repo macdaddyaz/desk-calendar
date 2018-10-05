@@ -7,10 +7,10 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue} from 'vue-property-decorator';
-  import Header from '@/components/Header.vue';
-  import Footer from '@/components/Footer.vue';
   import CalendarGrid from '@/components/calendar/CalendarGrid.vue';
+  import Footer from '@/components/Footer.vue';
+  import Header from '@/components/Header.vue';
+  import {Component, Vue} from 'vue-property-decorator';
 
   @Component({
     components: {
