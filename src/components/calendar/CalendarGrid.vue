@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue} from 'vue-property-decorator';
+  import {Component, Prop, Vue} from 'vue-property-decorator';
   import DayHeader from '@/components/calendar/DayHeader.vue';
   import DaySlot from '@/components/calendar/DaySlot.vue';
 
@@ -21,7 +21,9 @@
   })
   export default class CalendarGrid extends Vue {
     // TODO Replace simple data with objects
+    @Prop(Array)
     private dayHeaders: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    @Prop(Array)
     private daySlots: string[] = Array(7 * 6);
 
     public created() {
