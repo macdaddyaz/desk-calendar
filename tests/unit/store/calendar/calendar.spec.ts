@@ -1,6 +1,8 @@
 import {
   calendarMonth,
   currentCalendarMonth,
+  decrementMonth,
+  incrementMonth,
   nextMonth,
   previousMonth,
   toCalendarMonth,
@@ -47,12 +49,6 @@ describe('calendar functions', () => {
 
   describe('calendar getters', () => {
 
-    const makeCalendarState = (year: number, month: number): CalendarState => {
-      return {
-        currentMonth: calendarMonth(year, month),
-      };
-    };
-
     test('previousMonth has the right year and month', () => {
       const state = makeCalendarState(2017, 8);
       const prev = previousMonth(state);
@@ -88,5 +84,38 @@ describe('calendar functions', () => {
 
   describe('calendar mutations', () => {
 
+    test('decrementMonth selects the previous month', () => {
+      const state = makeCalendarState(1997, 10);
+      decrementMonth(state);
+
+      expect(state.currentMonth).toEqual({year: 1997, month: 9});
+    });
+
+    test('decrementMonth rolls to previous year', () => {
+      const state = makeCalendarState(2000, 0);
+      decrementMonth(state);
+
+      expect(state.currentMonth).toEqual({year: 1999, month: 11});
+    });
+
+    test('incrementMonth selects the next month', () => {
+      const state = makeCalendarState(2020, 8);
+      incrementMonth(state);
+
+      expect(state.currentMonth).toEqual({year: 2020, month: 9});
+    });
+
+    test('incrementMonth rolls to next year', () => {
+      const state = makeCalendarState(2000, 11);
+      incrementMonth(state);
+
+      expect(state.currentMonth).toEqual({year: 2001, month: 0});
+    });
   });
 });
+
+function makeCalendarState(year: number, month: number): CalendarState {
+  return {
+    currentMonth: calendarMonth(year, month),
+  };
+};

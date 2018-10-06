@@ -1,4 +1,4 @@
-import {currentCalendarMonth, decrementMonth, incrementMonth, nextMonth, previousMonth,} from '@/store/calendar';
+import {currentCalendarMonth, decrementMonth, incrementMonth, nextMonth, previousMonth} from '@/store/calendar';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
