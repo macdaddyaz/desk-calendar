@@ -7,6 +7,7 @@ export enum SupportedLocale {
   Portuguese = 'pt',
   Chinese = 'cn',
   Japanese = 'ja',
+  Arabic = 'ar',
 }
 
 export type DisplayStrategy = (val: number) => string;
