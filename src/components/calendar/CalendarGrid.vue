@@ -2,12 +2,13 @@
   <v-content id="main">
     <v-container id="cal-grid" fluid fill-height>
       <!-- TODO  -->
-      <DayHeader v-for="(dayHeader, index) in dayHeaders" :id="'day-header-' + (index + 1)" :label="dayHeader"></DayHeader>
-      <DaySlot v-for="(daySlot, index) in daySlots" :id="'day-slot-' + (index + 1)" :label="daySlot"></DaySlot>
+      <DayHeader v-for="(dayHeader, index) in dayHeaders" :key="'day-header-' + (index + 1)" :label="dayHeader"></DayHeader>
+      <DaySlot v-for="(daySlot, index) in daySlots" :key="'day-slot-' + (index + 1)" :label="daySlot"></DaySlot>
     </v-container>
   </v-content>
 </template>
 
+<!--suppress JSMismatchedCollectionQueryUpdate -->
 <script lang="ts">
   import DayHeader from '@/components/calendar/DayHeader.vue';
   import DaySlot from '@/components/calendar/DaySlot.vue';

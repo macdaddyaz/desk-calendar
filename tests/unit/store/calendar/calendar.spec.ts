@@ -118,4 +118,4 @@ function makeCalendarState(year: number, month: number): CalendarState {
   return {
     currentMonth: calendarMonth(year, month),
   };
-};
+}
