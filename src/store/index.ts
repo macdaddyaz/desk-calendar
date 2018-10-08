@@ -1,4 +1,13 @@
-import {currentMonth, decrementMonth, incrementMonth, nextMonth, previousMonth} from '@/store/calendar';
+import {
+  currentMonth,
+  daysOfMonth,
+  decrementMonth,
+  incrementMonth,
+  monthName,
+  nextMonth,
+  previousMonth,
+  weekdayNames,
+} from '@/store/calendar';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -11,6 +20,9 @@ export default new Vuex.Store({
   getters: {
     previousMonth,
     nextMonth,
+    monthName,
+    weekdayNames,
+    daysOfMonth,
   },
   mutations: {
     decrementMonth,

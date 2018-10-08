@@ -12,7 +12,8 @@ export enum SupportedLocale {
   Arabic = 'ar',
 }
 
-export type DisplayStrategy = (val: number) => string;
+export type MonthDisplayStrategy = (val: number) => string;
+export type WeekdayDisplayStrategy = () => string[];
 
 export interface CalendarState {
   selectedMonth: Moment;
@@ -20,6 +21,6 @@ export interface CalendarState {
 
 export interface CalendarOptions {
   locale: SupportedLocale;
-  monthDisplayStrategy: DisplayStrategy;
-  weekdayDisplayStrategy: DisplayStrategy;
+  monthDisplayStrategy: MonthDisplayStrategy;
+  weekdayDisplayStrategy: WeekdayDisplayStrategy;
 }
