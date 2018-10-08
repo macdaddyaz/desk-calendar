@@ -1,10 +1,9 @@
-import {nextMonth, previousMonth} from '@/store/calendar/getters';
 import {CalendarState} from '@/store/types';
 
 export function decrementMonth(state: CalendarState): void {
-  state.currentMonth = previousMonth(state);
+  state.selectedMonth.subtract({months: 1});
 }
 
 export function incrementMonth(state: CalendarState): void {
-  state.currentMonth = nextMonth(state);
+  state.selectedMonth.add({months: 1});
 }

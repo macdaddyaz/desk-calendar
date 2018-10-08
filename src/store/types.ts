@@ -1,3 +1,5 @@
+import {Moment} from 'moment';
+
 export enum SupportedLocale {
   English = 'en',
   Spanish = 'es',
@@ -12,13 +14,8 @@ export enum SupportedLocale {
 
 export type DisplayStrategy = (val: number) => string;
 
-export interface CalendarMonth {
-  readonly year: number;
-  readonly month: number;
-}
-
 export interface CalendarState {
-  currentMonth: CalendarMonth;
+  selectedMonth: Moment;
 }
 
 export interface CalendarOptions {
