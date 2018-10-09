@@ -13,6 +13,10 @@ export function monthName(state: CalendarState): string {
   return state.selectedMonth.format('MMMM');
 }
 
+export function year(state: CalendarState): number {
+  return state.selectedMonth.year();
+}
+
 export function weekdayNames(state: CalendarState): string[] {
   return state.selectedMonth.localeData().weekdays();
 }

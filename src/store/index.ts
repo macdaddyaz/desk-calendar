@@ -7,6 +7,7 @@ import {
   nextMonth,
   previousMonth,
   weekdayNames,
+  year,
 } from '@/store/calendar';
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     previousMonth,
     nextMonth,
     monthName,
+    year,
     weekdayNames,
     daysOfMonth,
   },

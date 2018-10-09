@@ -4,9 +4,7 @@
     <v-btn light fab small color="accent" @click="decrementMonth">
       <v-icon>arrow_back_ios</v-icon>
     </v-btn>
-    <v-spacer></v-spacer>
     <v-toolbar-title class="month-header">{{monthName}} {{year}}</v-toolbar-title>
-    <v-spacer></v-spacer>
     <v-btn fab small color="accent" @click="incrementMonth">
       <v-icon>arrow_forward_ios</v-icon>
     </v-btn>
@@ -30,17 +28,16 @@
     private selectedMonth!: Moment;
     @Getter
     private monthName!: string;
-
-    // noinspection JSUnusedLocalSymbols
-    private get year(): number {
-      return this.selectedMonth.year();
-    }
+    @Getter
+    private year!: number;
   }
 </script>
 
 <style lang="scss" scoped>
   .month-header {
+    width: 30%;
     color: white;
     font-size: 200%;
+    text-align: center;
   }
 </style>

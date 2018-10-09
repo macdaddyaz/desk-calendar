@@ -8,6 +8,7 @@ import {
   nextMonth,
   previousMonth,
   weekdayNames,
+  year,
 } from '@/store/calendar';
 import {CalendarState} from '@/store/types';
 
@@ -100,6 +101,14 @@ describe('calendar functions', () => {
       },
     );
 
+    const yearTestData = [2015, 2016, 2020, 2193, 1492];
+    test.each(yearTestData)(
+      'year: %d', (expected: number) => {
+        const state = makeCalendarState(expected, 2);
+        expect(year(state)).toBe(expected);
+      },
+    );
+
     test('weekdayNames: names are correct and week starts with Sunday', () => {
       const state = makeCalendarState(2018, 4);
       expect(weekdayNames(state))
@@ -171,8 +180,8 @@ describe('calendar functions', () => {
   });
 });
 
-function makeCalendarState(year: number, month: number): CalendarState {
+function makeCalendarState(yr: number, mo: number): CalendarState {
   return {
-    selectedMonth: createMoment(year, month),
+    selectedMonth: createMoment(yr, mo),
   };
 }
