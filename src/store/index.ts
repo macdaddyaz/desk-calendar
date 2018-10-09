@@ -13,9 +13,11 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const initialMonth = currentMonth();
+
 export default new Vuex.Store({
   state: {
-    selectedMonth: currentMonth(),
+    selectedMonth: initialMonth,
   },
   getters: {
     previousMonth,
