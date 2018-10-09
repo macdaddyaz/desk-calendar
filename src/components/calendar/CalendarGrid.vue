@@ -2,8 +2,8 @@
   <v-content id="main">
     <v-container id="cal-grid" fluid fill-height>
       <!-- TODO  -->
-      <DayHeader v-for="(dayHeader, index) in dayHeaders" :key="'day-header-' + (index + 1)" :label="dayHeader"></DayHeader>
-      <DaySlot v-for="(daySlot, index) in daySlots" :key="'day-slot-' + (index + 1)" :label="daySlot"></DaySlot>
+      <DayHeader v-for="(dayHeader, index) in weekdayNames" :key="dayHeaderKey(index)" :label="dayHeader"></DayHeader>
+      <DaySlot v-for="(daySlot, index) in daysOfMonth" :key="daySlotKey(index)" :label="daySlot"></DaySlot>
     </v-container>
   </v-content>
 </template>
@@ -12,7 +12,8 @@
 <script lang="ts">
   import DayHeader from '@/components/calendar/DayHeader.vue';
   import DaySlot from '@/components/calendar/DaySlot.vue';
-  import {Component, Prop, Vue} from 'vue-property-decorator';
+  import {Component, Vue} from 'vue-property-decorator';
+  import {Getter} from 'vuex-class';
 
   @Component({
     components: {
@@ -21,18 +22,19 @@
     },
   })
   export default class CalendarGrid extends Vue {
-    // TODO Replace simple data with objects
-    @Prop(Array)
-    private dayHeaders: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    @Prop(Array)
-    private daySlots: string[] = Array(7 * 6);
+    @Getter
+    private weekdayNames!: string[];
+    @Getter
+    private daysOfMonth!: number[];
 
-    public created() {
-      // TODO Remove after prototyping complete
-      const start = 6;
-      for (let i = start; i < (30 + start); i++) {
-        this.daySlots[i] = `${i - start + 1}`;
-      }
+    // noinspection JSUnusedLocalSymbols,JSMethodCanBeStatic
+    private dayHeaderKey(index: number): string {
+      return `day-header-${index}`;
+    }
+
+    // noinspection JSUnusedLocalSymbols,JSMethodCanBeStatic
+    private daySlotKey(index: number): string {
+      return `day-slot-${index}`;
     }
   }
 </script>

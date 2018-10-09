@@ -11,8 +11,8 @@
 
   @Component
   export default class Day extends Vue {
-    @Prop(String)
-    public label?: string;
+    @Prop(Number)
+    public label?: number;
   }
 </script>
 
