@@ -8,7 +8,7 @@ Vue.use(Vuetify, {
     primary: colors.indigo.base,
     secondary: colors.indigo.lighten3,
     base: colors.indigo.lighten5,
-    accent: colors.blueGrey.base,
+    accent: colors.blueGrey.lighten2,
     error: colors.red.base,
     warning: colors.yellow.base,
     info: colors.blue.base,
