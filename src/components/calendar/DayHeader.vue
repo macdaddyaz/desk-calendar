@@ -1,5 +1,7 @@
 <template>
-  <v-chip color="secondary">{{label}}</v-chip>
+  <v-card flat color="secondary">
+    <v-card-text class="day-header">{{label}}</v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -13,11 +15,12 @@
 </script>
 
 <style lang="scss" scoped>
-  .v-chip {
-    height: 24px;
-    margin-left: -4px;
-    margin-right: -4px;
+  .day-header {
+    padding: 4px;
     color: white;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
     font-weight: bold;
   }
 </style>

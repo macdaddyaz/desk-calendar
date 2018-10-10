@@ -10,7 +10,7 @@
   import {Component, Prop, Vue} from 'vue-property-decorator';
 
   @Component
-  export default class Day extends Vue {
+  export default class DaySlot extends Vue {
     @Prop(Number)
     public label?: number;
   }

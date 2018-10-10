@@ -24,7 +24,4 @@
 </script>
 
 <style lang="scss" scoped>
-  #main {
-    background-color: #d8d8d8;
-  }
 </style>

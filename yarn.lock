@@ -9647,11 +9647,6 @@ vue@^2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
 
-vuetify-scss@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/vuetify-scss/-/vuetify-scss-1.0.3.tgz#e4db8732368fc3c668ed48df522a55aff460222f"
-  integrity sha512-PBhiDMnn2k0Xbc9flAB3uu52vKgWQVHxk7ZjaP73t1LBTZDz1g8D31bqUtg1UhPUHbN+rQNqHk1Sx5ZbiplJAQ==
-
 vuetify@^1.0.19:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.2.6.tgz#e94e4b169544b326eabf08636006968c37e98f28"
