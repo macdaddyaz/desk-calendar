@@ -1,24 +1,11 @@
 <template>
-  <v-app>
-    <Header></Header>
-    <CalendarGrid></CalendarGrid>
-    <Footer></Footer>
-  </v-app>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
-  import CalendarGrid from '@/components/calendar/CalendarGrid.vue';
-  import Footer from '@/components/Footer.vue';
-  import Header from '@/components/Header.vue';
   import {Component, Vue} from 'vue-property-decorator';
 
-  @Component({
-    components: {
-      Header,
-      Footer,
-      CalendarGrid,
-    },
-  })
+  @Component
   export default class App extends Vue {
   }
 </script>
