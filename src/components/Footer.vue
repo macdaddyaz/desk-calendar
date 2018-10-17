@@ -12,14 +12,14 @@
 </template>
 
 <script lang="ts">
-  import moment from 'moment';
   import {Component, Vue} from 'vue-property-decorator';
+  import {currentMonth} from '../store/calendar';
 
   @Component
   export default class Footer extends Vue {
     // noinspection JSMethodCanBeStatic
     public get copyrightYear(): number {
-      return moment().year();
+      return currentMonth().year();
     }
   }
 </script>

@@ -12,6 +12,9 @@
   import Header from '@/components/Header.vue';
   import {Component, Vue} from 'vue-property-decorator';
 
+  /**
+   * Intermediate component that serves as a router target.
+   */
   @Component({
     components: {
       Header,
