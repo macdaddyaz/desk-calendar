@@ -1,8 +1,7 @@
 import {
   currentMonth,
   daysOfMonth,
-  decrementMonth,
-  incrementMonth,
+  goToMonth,
   monthName,
   nextMonth,
   previousMonth,
@@ -29,8 +28,7 @@ export default new Vuex.Store({
     daysOfMonth,
   },
   mutations: {
-    decrementMonth,
-    incrementMonth,
+    goToMonth,
   },
   actions: {},
 });

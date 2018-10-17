@@ -15,6 +15,11 @@ export enum SupportedLocale {
 export type MonthDisplayStrategy = (val: number) => string;
 export type WeekdayDisplayStrategy = () => string[];
 
+export interface YearAndMonth {
+  year: number;
+  month: number;
+}
+
 export interface CalendarState {
   selectedMonth: Moment;
 }

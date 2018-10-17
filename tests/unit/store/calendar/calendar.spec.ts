@@ -1,16 +1,16 @@
 import {
   createMoment,
   currentMonth,
+  currentYearAndMonth,
   daysOfMonth,
-  decrementMonth,
-  incrementMonth,
+  goToMonth,
   monthName,
   nextMonth,
   previousMonth,
   weekdayNames,
   year,
 } from '@/store/calendar';
-import {CalendarState} from '@/store/types';
+import {CalendarState, YearAndMonth} from '@/store/types';
 
 describe('calendar functions', () => {
 
@@ -25,8 +25,16 @@ describe('calendar functions', () => {
       expect(curr.date()).toBe(1);
     });
 
+    test('currentYearAndMonth: matches system time', () => {
+      const curr = currentYearAndMonth();
+      const now = new Date();
+
+      expect(curr.year).toBe(now.getFullYear());
+      expect(curr.month).toBe(now.getMonth());
+    });
+
     test('createMoment: sets the right year/month/day', () => {
-      const m = createMoment(2018, 9);
+      const m = createMoment({year: 2018, month: 9});
 
       expect(m.year()).toBe(2018);
       expect(m.month()).toBe(9);
@@ -37,7 +45,7 @@ describe('calendar functions', () => {
   describe('calendar getters', () => {
 
     test('previousMonth: has the right year and month', () => {
-      const state = makeCalendarState(2017, 8);
+      const state = makeCalendarState({year: 2017, month: 8});
       const prev = previousMonth(state);
 
       expect(prev.year()).toBe(2017);
@@ -48,7 +56,7 @@ describe('calendar functions', () => {
     });
 
     test('previousMonth: rolls to previous year', () => {
-      const state = makeCalendarState(2017, 0);
+      const state = makeCalendarState({year: 2017, month: 0});
       const prev = previousMonth(state);
 
       expect(prev.year()).toBe(2016);
@@ -59,7 +67,7 @@ describe('calendar functions', () => {
     });
 
     test('nextMonth: has the right year and month', () => {
-      const state = makeCalendarState(2017, 4);
+      const state = makeCalendarState({year: 2017, month: 4});
       const next = nextMonth(state);
 
       expect(next.year()).toBe(2017);
@@ -70,7 +78,7 @@ describe('calendar functions', () => {
     });
 
     test('nextMonth: rolls to next year', () => {
-      const state = makeCalendarState(2017, 11);
+      const state = makeCalendarState({year: 2017, month: 11});
       const next = nextMonth(state);
 
       expect(next.year()).toBe(2018);
@@ -96,7 +104,7 @@ describe('calendar functions', () => {
     ];
     test.each(monthNameTestData)(
       'monthName: month %d displays as %s', (month: number, expectedName: string) => {
-        const state = makeCalendarState(2018, month);
+        const state = makeCalendarState({year: 2018, month});
         expect(monthName(state)).toEqual(expectedName);
       },
     );
@@ -104,19 +112,19 @@ describe('calendar functions', () => {
     const yearTestData = [2015, 2016, 2020, 2193, 1492];
     test.each(yearTestData)(
       'year: %d', (expected: number) => {
-        const state = makeCalendarState(expected, 2);
+        const state = makeCalendarState({year: expected, month: 2});
         expect(year(state)).toBe(expected);
       },
     );
 
     test('weekdayNames: names are correct and week starts with Sunday', () => {
-      const state = makeCalendarState(2018, 4);
+      const state = makeCalendarState({year: 2018, month: 4});
       expect(weekdayNames(state))
         .toEqual(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
     });
 
     test('daysOfMonth: array of days for June 2015 is correct', () => {
-      const state = makeCalendarState(2015, 5);
+      const state = makeCalendarState({year: 2015, month: 5});
       const days = daysOfMonth(state);
       expect(days[0]).toBeNull();
       expect(days[1]).toBe(1);
@@ -127,7 +135,7 @@ describe('calendar functions', () => {
     });
 
     test('daysOfMonth: array of days for August 2018 is correct', () => {
-      const state = makeCalendarState(2018, 7);
+      const state = makeCalendarState({year: 2018, month: 7});
       const days = daysOfMonth(state);
       expect(days[0]).toBeNull();
       expect(days[2]).toBeNull();
@@ -142,46 +150,19 @@ describe('calendar functions', () => {
 
   describe('calendar mutations', () => {
 
-    test('decrementMonth: selects the previous month', () => {
-      const state = makeCalendarState(1997, 10);
-      decrementMonth(state);
+    test('goToMonth: updates state with the given month', () => {
+      const state = makeCalendarState({year: 2013, month: 4});
+      goToMonth(state, {year: 2018, month: 1});
 
-      expect(state.selectedMonth.year()).toBe(1997);
-      expect(state.selectedMonth.month()).toBe(9);
-      expect(state.selectedMonth.date()).toBe(1);
-    });
-
-    test('decrementMonth: rolls to previous year', () => {
-      const state = makeCalendarState(2000, 0);
-      decrementMonth(state);
-
-      expect(state.selectedMonth.year()).toBe(1999);
-      expect(state.selectedMonth.month()).toBe(11);
-      expect(state.selectedMonth.date()).toBe(1);
-    });
-
-    test('incrementMonth: selects the next month', () => {
-      const state = makeCalendarState(2020, 8);
-      incrementMonth(state);
-
-      expect(state.selectedMonth.year()).toBe(2020);
-      expect(state.selectedMonth.month()).toBe(9);
-      expect(state.selectedMonth.date()).toBe(1);
-    });
-
-    test('incrementMonth: rolls to next year', () => {
-      const state = makeCalendarState(2000, 11);
-      incrementMonth(state);
-
-      expect(state.selectedMonth.year()).toBe(2001);
-      expect(state.selectedMonth.month()).toBe(0);
+      expect(state.selectedMonth.year()).toBe(2018);
+      expect(state.selectedMonth.month()).toBe(1);
       expect(state.selectedMonth.date()).toBe(1);
     });
   });
 });
 
-function makeCalendarState(yr: number, mo: number): CalendarState {
+function makeCalendarState(yearAndMonth: YearAndMonth): CalendarState {
   return {
-    selectedMonth: createMoment(yr, mo),
+    selectedMonth: createMoment(yearAndMonth),
   };
 }

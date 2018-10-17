@@ -1,9 +1,6 @@
-import {CalendarState} from '@/store/types';
+import {createMoment} from '@/store/calendar/common';
+import {CalendarState, YearAndMonth} from '@/store/types';
 
-export function decrementMonth(state: CalendarState): void {
-  state.selectedMonth = state.selectedMonth.subtract({months: 1}).clone();
-}
-
-export function incrementMonth(state: CalendarState): void {
-  state.selectedMonth = state.selectedMonth.add({months: 1}).clone();
+export function goToMonth(state: CalendarState, newMonth: YearAndMonth): void {
+  state.selectedMonth = createMoment(newMonth).date(1);
 }

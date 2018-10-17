@@ -11,8 +11,6 @@
   import Footer from '@/components/Footer.vue';
   import Header from '@/components/Header.vue';
   import {Component, Vue} from 'vue-property-decorator';
-  import {RawLocation, Route} from 'vue-router';
-  import {Mutation} from 'vuex-class';
 
   @Component({
     components: {
@@ -23,16 +21,6 @@
   })
   export default class Calendar extends Vue {
 
-    @Mutation
-    private goToMonth!: (payload: { year: number, month: number }) => void;
-
-    public beforeRouteUpdate(to: Route,
-                             from: Route,
-                             next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void): void {
-      const {year: newYear, month: newMonth} = to.params;
-      this.goToMonth({year: Number(newYear), month: Number(newMonth)});
-      next();
-    }
   }
 </script>
 

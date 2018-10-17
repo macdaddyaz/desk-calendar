@@ -1,11 +1,11 @@
 <template>
   <v-toolbar app color="primary">
     <v-spacer></v-spacer>
-    <v-btn light fab small color="accent" @click="decrementMonth">
+    <v-btn light fab small color="accent">
       <v-icon>arrow_back_ios</v-icon>
     </v-btn>
     <v-toolbar-title class="month-header">{{monthName}} {{year}}</v-toolbar-title>
-    <v-btn fab small color="accent" @click="incrementMonth">
+    <v-btn fab small color="accent">
       <v-icon>arrow_forward_ios</v-icon>
     </v-btn>
     <v-spacer></v-spacer>
@@ -15,15 +15,10 @@
 <script lang="ts">
   import {Moment} from 'moment';
   import {Component, Vue} from 'vue-property-decorator';
-  import {Getter, Mutation, State} from 'vuex-class';
-  import {CalendarState} from '../store/types';
+  import {Getter, State} from 'vuex-class';
 
   @Component
   export default class Header extends Vue {
-    @Mutation
-    private decrementMonth!: (state: CalendarState) => void;
-    @Mutation
-    private incrementMonth!: (state: CalendarState) => void;
     @State
     private selectedMonth!: Moment;
     @Getter
