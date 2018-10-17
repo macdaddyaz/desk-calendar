@@ -13,6 +13,8 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+export * from './types';
+
 const initialMonth = currentMonth();
 
 export default new Vuex.Store({

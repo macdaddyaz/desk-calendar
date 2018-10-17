@@ -3,6 +3,8 @@ import Calendar from '@/views/Calendar.vue';
 import Vue from 'vue';
 import Router from 'vue-router';
 
+export * from './types';
+
 // noinspection TypeScriptUnresolvedFunction
 Vue.use(Router);
 

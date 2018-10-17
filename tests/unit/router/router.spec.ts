@@ -1,16 +1,27 @@
 import {derouterize, redirectToCurrentMonth, routerize, updateSelectedMonth} from '@/router/common';
 import {RouterHookCallbackLocation} from '@/router/types';
-import store from '@/store';
 import {Location, Route} from 'vue-router';
-// IMPORTANT!!!
-// The order of the following imports is significant. Specifically, the import
-// of Store from 'vuex-mock-store' *must* come before the import from
-// '@/store'. Otherwise, the store is not mocked correctly, and the test fails.
-import {Store} from 'vuex-mock-store';
+import {Store} from 'vuex';
+import {Store as MockStore} from 'vuex-mock-store';
 
-jest.mock('@/store', () => {
-  return new Store({});
-});
+// Wizardry! A kludgy little workaround to allow us to mock up the Vuex store
+// that the `updateSelectedMonth` function uses.
+//
+// None of the techniques that I tried to mock the entire 'store' module worked
+// properly. The closest one worked, but was extremely sensitive to the order of
+// the imports. But formatting the code in the IDE resulted in re-ordering the
+// imports, which broke the test.
+//
+// Instead, we create a mock store manually that can be optionally passed into
+// the function. The function itself will look supplement a missing parameter
+// with the real store.
+const mockStore = new MockStore({});
+// The Store type from 'vuex-mock-store' doesn't actually look like a Vuex
+// Store, so we have to fudge it here and convince the compiler that it's fine.
+let store: Store<any>;
+if (isStore(mockStore)) {
+  store = mockStore;
+}
 
 describe('router functions', () => {
 
@@ -79,7 +90,7 @@ describe('router functions', () => {
         // no implementation
       });
 
-      updateSelectedMonth(toMock, fromMock, mockNext);
+      updateSelectedMonth(toMock, fromMock, mockNext, store);
       expect(store.commit).toHaveBeenCalledWith('goToMonth', {year: 2012, month: 4});
       expect(mockNext).toHaveBeenCalledTimes(1);
     });
@@ -88,4 +99,8 @@ describe('router functions', () => {
 
 function isLocation(arg: any): arg is Location {
   return (arg as Location).name !== undefined && (arg as Location).params !== undefined;
+}
+
+function isStore(val: any): val is Store<any> {
+  return val.commit !== undefined;
 }
