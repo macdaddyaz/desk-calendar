@@ -13,7 +13,7 @@
   "dependencies": {
     "moment": "^2.22.2",
     "register-service-worker": "^1.0.0",
-    "vue": "^2.5.17",
+    "vue": "2.5.15",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",
@@ -35,7 +35,7 @@
     "ts-jest": "^23.0.0",
     "typescript": "^3.0.0",
     "vue-cli-plugin-vuetify": "^0.2.0",
-    "vue-template-compiler": "^2.5.17",
+    "vue-template-compiler": "2.5.15",
     "vuex-mock-store": "^0.0.5"
   }
 }
