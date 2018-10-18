@@ -1,20 +1,21 @@
-import {CalendarState} from '@/store/types';
-import {Moment} from 'moment';
+import {CalendarState, YearAndMonth} from '@/store/types';
 
 /**
  * Retrieves the month before the calendar's current month.
  * @param state
  */
-export function previousMonth(state: CalendarState): Moment {
-  return state.selectedMonth.clone().subtract({months: 1});
+export function previousMonth(state: CalendarState): YearAndMonth {
+  const previous = state.selectedMonth.clone().subtract({months: 1});
+  return {year: previous.year(), month: previous.month()};
 }
 
 /**
  * Retrieves the month after the calendar's current month.
  * @param state
  */
-export function nextMonth(state: CalendarState): Moment {
-  return state.selectedMonth.clone().add({months: 1});
+export function nextMonth(state: CalendarState): YearAndMonth {
+  const next = state.selectedMonth.clone().add({months: 1});
+  return {year: next.year(), month: next.month()};
 }
 
 /**

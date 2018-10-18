@@ -48,8 +48,8 @@ describe('calendar functions', () => {
       const state = makeCalendarState({year: 2017, month: 8});
       const prev = previousMonth(state);
 
-      expect(prev.year()).toBe(2017);
-      expect(prev.month()).toBe(7);
+      expect(prev.year).toBe(2017);
+      expect(prev.month).toBe(7);
       // Ensure existing state has not changed
       expect(state.selectedMonth.year()).toBe(2017);
       expect(state.selectedMonth.month()).toBe(8);
@@ -59,8 +59,8 @@ describe('calendar functions', () => {
       const state = makeCalendarState({year: 2017, month: 0});
       const prev = previousMonth(state);
 
-      expect(prev.year()).toBe(2016);
-      expect(prev.month()).toBe(11);
+      expect(prev.year).toBe(2016);
+      expect(prev.month).toBe(11);
       // Ensure existing state has not changed
       expect(state.selectedMonth.year()).toBe(2017);
       expect(state.selectedMonth.month()).toBe(0);
@@ -70,8 +70,8 @@ describe('calendar functions', () => {
       const state = makeCalendarState({year: 2017, month: 4});
       const next = nextMonth(state);
 
-      expect(next.year()).toBe(2017);
-      expect(next.month()).toBe(5);
+      expect(next.year).toBe(2017);
+      expect(next.month).toBe(5);
       // Ensure existing state has not changed
       expect(state.selectedMonth.year()).toBe(2017);
       expect(state.selectedMonth.month()).toBe(4);
@@ -81,8 +81,8 @@ describe('calendar functions', () => {
       const state = makeCalendarState({year: 2017, month: 11});
       const next = nextMonth(state);
 
-      expect(next.year()).toBe(2018);
-      expect(next.month()).toBe(0);
+      expect(next.year).toBe(2018);
+      expect(next.month).toBe(0);
       // Ensure existing state has not changed
       expect(state.selectedMonth.year()).toBe(2017);
       expect(state.selectedMonth.month()).toBe(11);
