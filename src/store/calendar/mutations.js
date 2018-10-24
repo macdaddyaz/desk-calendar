@@ -1,4 +1,4 @@
-import {createMoment} from '@/store/calendar/common';
+import { createMoment } from '@/store/calendar/common';
 
 /**
  * Updates the calendar's selected month with the given month.

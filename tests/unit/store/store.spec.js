@@ -1,4 +1,4 @@
-import {createMoment, currentMonth, currentYearAndMonth} from '@/store/calendar/common';
+import { createMoment, currentMonth, currentYearAndMonth } from '@/store/calendar/common';
 import {
   daysOfMonth,
   monthName,
@@ -6,13 +6,17 @@ import {
   previousMonth,
   weekdayNames,
   year,
-} from '../../../src/store/calendar/getters';
-import {goToMonth} from '../../../src/store/calendar/mutations';
+} from '@/store/calendar/getters';
+import { goToMonth } from '@/store/calendar/mutations';
+
+function makeCalendarState(yearAndMonth) {
+  return {
+    selectedMonth: createMoment(yearAndMonth),
+  };
+}
 
 describe('common calendar functions', () => {
-
   describe('currentMonth', () => {
-
     it('matches system time', () => {
       const curr = currentMonth();
       const now = new Date();
@@ -24,7 +28,6 @@ describe('common calendar functions', () => {
   });
 
   describe('currentYearAndMonth', () => {
-
     it('matches system time', () => {
       const curr = currentYearAndMonth();
       const now = new Date();
@@ -35,7 +38,6 @@ describe('common calendar functions', () => {
   });
 
   describe('createMoment', () => {
-
     it('createMoment: sets the right year/month/day', () => {
       const m = createMoment({
         year: 2018,
@@ -50,11 +52,12 @@ describe('common calendar functions', () => {
 });
 
 describe('calendar getters', () => {
-
   describe('previousMonth', () => {
-
     it('has the right year and month', () => {
-      const state = makeCalendarState({year: 2017, month: 8});
+      const state = makeCalendarState({
+        year: 2017,
+        month: 8,
+      });
       const prev = previousMonth(state);
 
       expect(prev.year).toBe(2017);
@@ -65,7 +68,10 @@ describe('calendar getters', () => {
     });
 
     it('rolls to previous year', () => {
-      const state = makeCalendarState({year: 2017, month: 0});
+      const state = makeCalendarState({
+        year: 2017,
+        month: 0,
+      });
       const prev = previousMonth(state);
 
       expect(prev.year).toBe(2016);
@@ -77,9 +83,11 @@ describe('calendar getters', () => {
   });
 
   describe('nextMonth', () => {
-
     it('has the right year and month', () => {
-      const state = makeCalendarState({year: 2017, month: 4});
+      const state = makeCalendarState({
+        year: 2017,
+        month: 4,
+      });
       const next = nextMonth(state);
 
       expect(next.year).toBe(2017);
@@ -90,7 +98,10 @@ describe('calendar getters', () => {
     });
 
     it('rolls to next year', () => {
-      const state = makeCalendarState({year: 2017, month: 11});
+      const state = makeCalendarState({
+        year: 2017,
+        month: 11,
+      });
       const next = nextMonth(state);
 
       expect(next.year).toBe(2018);
@@ -102,7 +113,6 @@ describe('calendar getters', () => {
   });
 
   describe('monthName', () => {
-
     const monthNameTestData = [
       [0, 'January'],
       [1, 'February'],
@@ -118,39 +128,48 @@ describe('calendar getters', () => {
       [11, 'December'],
     ];
 
-    test.each(monthNameTestData)(
-      'monthName: month %d displays as %s', (month, expectedName) => {
-        const state = makeCalendarState({year: 2018, month});
-        expect(monthName(state)).toEqual(expectedName);
-      },
-    );
+    test.each(monthNameTestData)('monthName: month %d displays as %s', (month, expectedName) => {
+      const state = makeCalendarState({
+        year: 2018,
+        month,
+      });
+
+      expect(monthName(state)).toEqual(expectedName);
+    });
   });
 
   describe('year', () => {
-
     const yearTestData = [2015, 2016, 2020, 2193, 1492];
 
-    test.each(yearTestData)(
-      'year: %d', (expected) => {
-        const state = makeCalendarState({year: expected, month: 2});
-        expect(year(state)).toBe(expected);
-      },
-    );
+    test.each(yearTestData)('year: %d', (expected) => {
+      const state = makeCalendarState({
+        year: expected,
+        month: 2,
+      });
+
+      expect(year(state)).toBe(expected);
+    });
   });
 
   describe('weekdayNames', () => {
-
     it('supplies the correct names and starts the week with Sunday', () => {
-      const state = makeCalendarState({year: 2018, month: 4});
-      expect(weekdayNames(state))
-        .toEqual(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+      const state = makeCalendarState({
+        year: 2018,
+        month: 4,
+      });
+      const expectedNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+      expect(weekdayNames(state)).toEqual(expectedNames);
     });
   });
 
   describe('daysOfMonth', () => {
-
     it('supplies the correct days for June 2015', () => {
-      const state = makeCalendarState({year: 2015, month: 5});
+      const state = makeCalendarState({
+        year: 2015,
+        month: 5,
+      });
+
       const days = daysOfMonth(state);
       expect(days[0]).toBeNull();
       expect(days[1]).toBe(1);
@@ -161,7 +180,11 @@ describe('calendar getters', () => {
     });
 
     it('supplies the correct days for August 2018', () => {
-      const state = makeCalendarState({year: 2018, month: 7});
+      const state = makeCalendarState({
+        year: 2018,
+        month: 7,
+      });
+
       const days = daysOfMonth(state);
       expect(days[0]).toBeNull();
       expect(days[2]).toBeNull();
@@ -175,12 +198,16 @@ describe('calendar getters', () => {
 });
 
 describe('calendar mutations', () => {
-
   describe('goToMonth', () => {
-
     it('updates state with the given month', () => {
-      const state = makeCalendarState({year: 2013, month: 4});
-      goToMonth(state, {year: 2018, month: 1});
+      const state = makeCalendarState({
+        year: 2013,
+        month: 4,
+      });
+      goToMonth(state, {
+        year: 2018,
+        month: 1,
+      });
 
       expect(state.selectedMonth.year()).toBe(2018);
       expect(state.selectedMonth.month()).toBe(1);
@@ -188,9 +215,3 @@ describe('calendar mutations', () => {
     });
   });
 });
-
-function makeCalendarState(yearAndMonth) {
-  return {
-    selectedMonth: createMoment(yearAndMonth),
-  };
-}

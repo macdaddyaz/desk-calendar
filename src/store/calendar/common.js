@@ -13,7 +13,10 @@ export function currentMonth() {
  */
 export function currentYearAndMonth() {
   const now = currentMonth();
-  return {year: now.year(), month: now.month()};
+  return {
+    year: now.year(),
+    month: now.month(),
+  };
 }
 
 /**
@@ -22,5 +25,7 @@ export function currentYearAndMonth() {
  * @param yearAndMonth
  */
 export function createMoment(yearAndMonth) {
-  return moment().year(yearAndMonth.year).month(yearAndMonth.month).date(1);
+  return moment().year(yearAndMonth.year)
+                 .month(yearAndMonth.month)
+                 .date(1);
 }

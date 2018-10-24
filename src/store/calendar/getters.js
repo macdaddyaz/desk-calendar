@@ -3,8 +3,11 @@
  * @param state
  */
 export function previousMonth(state) {
-  const previous = state.selectedMonth.clone().subtract({months: 1});
-  return {year: previous.year(), month: previous.month()};
+  const previous = state.selectedMonth.clone().subtract({ months: 1 });
+  return {
+    year: previous.year(),
+    month: previous.month(),
+  };
 }
 
 /**
@@ -12,8 +15,11 @@ export function previousMonth(state) {
  * @param state
  */
 export function nextMonth(state) {
-  const next = state.selectedMonth.clone().add({months: 1});
-  return {year: next.year(), month: next.month()};
+  const next = state.selectedMonth.clone().add({ months: 1 });
+  return {
+    year: next.year(),
+    month: next.month(),
+  };
 }
 
 /**
