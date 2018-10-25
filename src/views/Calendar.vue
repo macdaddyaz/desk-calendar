@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header :previous="previousRoute" :next="nextRoute"></Header>
+    <CalendarHeader :previous="previousRoute" :next="nextRoute"></CalendarHeader>
     <CalendarGrid></CalendarGrid>
     <Footer></Footer>
   </v-app>
@@ -8,8 +8,8 @@
 
 <script>
 import CalendarGrid from '@/components/calendar/CalendarGrid.vue';
+import CalendarHeader from '@/components/calendar/CalendarHeader.vue';
 import Footer from '@/components/Footer.vue';
-import Header from '@/components/Header.vue';
 import { derouterize, routerize } from '@/router/common';
 import { mapGetters } from 'vuex';
 
@@ -18,9 +18,9 @@ import { mapGetters } from 'vuex';
  */
 export default {
   components: {
+    CalendarHeader,
     CalendarGrid,
     Footer,
-    Header,
   },
   computed: {
     ...mapGetters([
