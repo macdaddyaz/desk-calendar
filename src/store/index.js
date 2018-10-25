@@ -1,13 +1,6 @@
-import {
-  currentMonth,
-  daysOfMonth,
-  goToMonth,
-  monthName,
-  nextMonth,
-  previousMonth,
-  weekdayNames,
-  year,
-} from '@/store/calendar';
+import { currentMonth } from '@/store/calendar/common';
+import * as getters from '@/store/calendar/getters';
+import * as mutations from '@/store/calendar/mutations';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -19,16 +12,7 @@ export default new Vuex.Store({
   state: {
     selectedMonth: initialMonth,
   },
-  getters: {
-    previousMonth,
-    nextMonth,
-    monthName,
-    year,
-    weekdayNames,
-    daysOfMonth,
-  },
-  mutations: {
-    goToMonth,
-  },
+  getters,
+  mutations,
   actions: {},
 });
