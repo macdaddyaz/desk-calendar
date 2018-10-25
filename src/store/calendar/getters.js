@@ -23,19 +23,12 @@ export function nextMonth(state) {
 }
 
 /**
- * Retrieves a name for the current month.
+ * Retrieves a display label for the currently selected month.
  * @param state
+ * @returns String the display label
  */
-export function monthName(state) {
-  return state.selectedMonth.format('MMMM');
-}
-
-/**
- * Retrieves the year of the current month.
- * @param state
- */
-export function year(state) {
-  return state.selectedMonth.year();
+export function monthDisplayLabel(state) {
+  return state.selectedMonth.format('MMMM YYYY');
 }
 
 /**

@@ -1,12 +1,5 @@
 import { createMoment, currentMonth, currentYearAndMonth } from '@/store/calendar/common';
-import {
-  daysOfMonth,
-  monthName,
-  nextMonth,
-  previousMonth,
-  weekdayNames,
-  year,
-} from '@/store/calendar/getters';
+import { daysOfMonth, monthDisplayLabel, nextMonth, previousMonth, weekdayNames } from '@/store/calendar/getters';
 import { goToMonth } from '@/store/calendar/mutations';
 
 function makeCalendarState(yearAndMonth) {
@@ -112,42 +105,21 @@ describe('calendar getters', () => {
     });
   });
 
-  describe('monthName', () => {
-    const monthNameTestData = [
-      [0, 'January'],
-      [1, 'February'],
-      [2, 'March'],
-      [3, 'April'],
-      [4, 'May'],
-      [5, 'June'],
-      [6, 'July'],
-      [7, 'August'],
-      [8, 'September'],
-      [9, 'October'],
-      [10, 'November'],
-      [11, 'December'],
+  describe('monthDisplayLabel', () => {
+    const monthDisplayLabelTestData = [
+      [0, 1985, 'January 1985'],
+      [2, 2193, 'March 2193'],
+      [3, 2018, 'April 2018'],
+      [9, 2012, 'October 2012'],
+      [11, 1997, 'December 1997'],
     ];
-
-    test.each(monthNameTestData)('monthName: month %d displays as %s', (month, expectedName) => {
+    test.each(monthDisplayLabelTestData)('displays full month and year', (month, year, expectedDisplay) => {
       const state = makeCalendarState({
-        year: 2018,
+        year,
         month,
       });
 
-      expect(monthName(state)).toEqual(expectedName);
-    });
-  });
-
-  describe('year', () => {
-    const yearTestData = [2015, 2016, 2020, 2193, 1492];
-
-    test.each(yearTestData)('year: %d', (expected) => {
-      const state = makeCalendarState({
-        year: expected,
-        month: 2,
-      });
-
-      expect(year(state)).toBe(expected);
+      expect(monthDisplayLabel(state)).toEqual(expectedDisplay);
     });
   });
 

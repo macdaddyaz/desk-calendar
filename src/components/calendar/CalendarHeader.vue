@@ -4,7 +4,7 @@
     <v-btn light fab small color="accent" @click="goPrevious">
       <v-icon>arrow_back_ios</v-icon>
     </v-btn>
-    <v-toolbar-title class="month-header">{{monthName}} {{year}}</v-toolbar-title>
+    <v-toolbar-title class="month-header">{{monthDisplayLabel}}</v-toolbar-title>
     <v-btn fab small color="accent" @click="goNext">
       <v-icon>arrow_forward_ios</v-icon>
     </v-btn>
@@ -22,8 +22,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'monthName',
-      'year',
+      'monthDisplayLabel',
     ]),
   },
   methods: {
