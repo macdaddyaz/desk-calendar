@@ -16,7 +16,7 @@ export default {
     DayHeader,
     DaySlot,
   },
-  computed: {
+  methods: {
     dayHeaderKey(index) {
       return `day-header-${index}`;
     },

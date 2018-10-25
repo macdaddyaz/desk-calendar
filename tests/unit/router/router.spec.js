@@ -1,4 +1,7 @@
-import { derouterize, redirectToCurrentMonth, routerize } from '@/router/common';
+import { derouterize, redirectToCurrentMonth, routerize, updateSelectedMonth } from '@/router/common';
+import store from '@/store';
+
+jest.mock('vuex');
 
 describe('common router functions', () => {
   describe('routerize', () => {
@@ -58,6 +61,28 @@ describe('common router functions', () => {
         // noinspection TsLint
         expect(to.params.month).toEqual(String(now.getMonth() + 1));
       });
+    });
+  });
+
+  describe('updateSelectedMonth', () => {
+    it('updates the store with the new month', () => {
+      const RouteMock = jest.fn();
+      const toMock = new RouteMock();
+      toMock.params = {
+        year: '2012',
+        month: '5',
+      };
+      const fromMock = new RouteMock();
+      const mockNext = jest.fn(() => {
+        // no implementation
+      });
+
+      updateSelectedMonth(toMock, fromMock, mockNext);
+      expect(store.commit).toBeCalledWith('goToMonth', {
+        year: 2012,
+        month: 4,
+      });
+      expect(mockNext).toHaveBeenCalledTimes(1);
     });
   });
 });
