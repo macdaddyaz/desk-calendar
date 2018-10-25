@@ -13,10 +13,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   computed: {
-    monthName: String,
-    year: Number,
+    ...mapGetters([
+      'monthName',
+      'year',
+    ]),
   },
 };
 </script>

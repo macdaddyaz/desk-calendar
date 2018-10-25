@@ -10,11 +10,18 @@
 <script>
 import DayHeader from '@/components/calendar/DayHeader.vue';
 import DaySlot from '@/components/calendar/DaySlot.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
     DayHeader,
     DaySlot,
+  },
+  computed: {
+    ...mapGetters([
+      'weekdayNames',
+      'daysOfMonth',
+    ]),
   },
   methods: {
     dayHeaderKey(index) {

@@ -19,6 +19,7 @@ export const routes = [
   },
 ];
 
+// noinspection JSUnusedGlobalSymbols
 export default new Router({
   mode: 'history',
   routes,

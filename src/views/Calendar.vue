@@ -20,6 +20,9 @@ export default {
     Footer,
     Header,
   },
+  beforeRouteUpdate(to, from, next) {
+    next();
+  },
 };
 </script>
 
