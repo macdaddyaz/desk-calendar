@@ -1,7 +1,6 @@
-import { currentMonth } from '@/store/calendar/common';
-import * as getters from '@/store/calendar/getters';
-import * as mutations from '@/store/calendar/mutations';
-import { defaultOptions } from '@/store/options/common';
+import { currentMonth, defaultOptions } from '@/store/common';
+import * as getters from '@/store/getters';
+import * as mutations from '@/store/mutations';
 import Vue from 'vue';
 import Vuex from 'vuex';
 

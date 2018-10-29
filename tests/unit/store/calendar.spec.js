@@ -1,6 +1,6 @@
-import { createMoment, currentMonth, currentYearAndMonth } from '@/store/calendar/common';
-import { daysOfMonth, monthDisplayLabel, nextMonth, previousMonth, weekdayNames } from '@/store/calendar/getters';
-import { goToMonth } from '@/store/calendar/mutations';
+import { createMoment, currentMonth, currentYearAndMonth } from '@/store/common';
+import { daysOfMonth, monthDisplayLabel, nextMonth, previousMonth, weekdayNames } from '@/store/getters';
+import { goToMonth } from '@/store/mutations';
 
 function makeCalendarState(yearAndMonth) {
   return {

@@ -36,7 +36,12 @@ export function monthDisplayLabel(state) {
  * @param state
  */
 export function weekdayNames(state) {
-  return state.selectedMonth.localeData().weekdays();
+  const weekdays = state.selectedMonth.localeData().weekdays();
+  const firstDay = state.selectedMonth.localeData().firstDayOfWeek();
+  for (let i = 0; i < firstDay; i++) {
+    weekdays.push(weekdays.shift());
+  }
+  return weekdays;
 }
 
 /**

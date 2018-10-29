@@ -1,5 +1,5 @@
 import store from '@/store';
-import { currentYearAndMonth } from '@/store/calendar/common';
+import { currentYearAndMonth } from '@/store/common';
 
 export function routerize(realMonth) {
   const year = String(realMonth.year);

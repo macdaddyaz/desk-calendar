@@ -1,6 +1,8 @@
-import { createMoment } from '@/store/calendar/common';
-import { defaultOptions } from '@/store/options/common';
-import { monthDisplay, weekdayDisplay } from '@/store/options/strategies';
+import { createMoment, defaultOptions } from '@/store/common';
+import { monthDisplay, weekdayDisplay } from '@/store/strategies';
+import { createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
+import createTestStoreConfig from './testStore';
 
 describe('common option functions', () => {
   describe('defaultOptions', () => {
@@ -114,6 +116,41 @@ describe('weekday display strategies', () => {
       const expectedNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
       expect(weekdayDisplay.compact(m)).toEqual(expectedNames);
+    });
+  });
+});
+
+
+describe('option mutations', () => {
+  describe('updateLocale', () => {
+    it('updates state with the given locale', () => {
+      const storeConfig = createTestStoreConfig({
+        year: 2018,
+        month: 9,
+      });
+      const store = new Vuex.Store(storeConfig);
+      store.commit('updateLocale', { locale: 'fr' });
+
+      expect(store.state.options.locale).toEqual('fr');
+    });
+
+    const localVue = createLocalVue();
+    localVue.use(Vuex);
+
+    it('triggers other state updates', () => {
+      const storeConfig = createTestStoreConfig({
+        year: 2015,
+        month: 5,
+      });
+      const store = new Vuex.Store(storeConfig);
+      // check starting state
+      expect(store.getters.monthDisplayLabel).toEqual('June 2015');
+      expect(store.getters.weekdayNames)
+        .toEqual(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+      store.commit('updateLocale', { locale: 'it' });
+      expect(store.getters.monthDisplayLabel).toEqual('giugno 2015');
+      expect(store.getters.weekdayNames)
+        .toEqual(['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica']);
     });
   });
 });

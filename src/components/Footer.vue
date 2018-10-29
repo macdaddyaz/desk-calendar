@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { currentMonth } from '@/store/calendar/common';
+import { currentMonth } from '@/store/common';
 
 export default {
   computed: {
