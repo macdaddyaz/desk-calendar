@@ -1,4 +1,4 @@
-import { store } from '@/store';
+import store from '@/store';
 import { currentYearAndMonth } from '@/store/common';
 
 export function routerize(realMonth) {
