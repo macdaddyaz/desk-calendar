@@ -2,6 +2,8 @@
  * Retrieves the month before the calendar's current month.
  * @param state
  */
+import moment from 'moment';
+
 export function previousMonth(state) {
   const previous = state.selectedMonth.clone().subtract({ months: 1 });
   return {
@@ -36,8 +38,10 @@ export function monthDisplayLabel(state) {
  * @param state
  */
 export function weekdayNames(state) {
-  const weekdays = state.selectedMonth.localeData().weekdays();
-  const firstDay = state.selectedMonth.localeData().firstDayOfWeek();
+  const localeData = moment.localeData(state.options.locale);
+  // .slice() is to copy the array, because we get a reference to Moment's.
+  const weekdays = localeData.weekdays().slice();
+  const firstDay = localeData.firstDayOfWeek();
   for (let i = 0; i < firstDay; i++) {
     weekdays.push(weekdays.shift());
   }

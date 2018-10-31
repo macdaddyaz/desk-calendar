@@ -1,4 +1,4 @@
-import store from '@/store';
+import { store } from '@/store';
 import { currentYearAndMonth } from '@/store/common';
 
 export function routerize(realMonth) {
@@ -19,6 +19,18 @@ export function derouterize(routerPath) {
   };
 }
 
+// TODO Move these router-specific methods to another module
+// TODO Optimize, test, document
+export function updateStateFromQuery(to, from, next) {
+  if (to.query) {
+    if (to.query.locale) {
+      store.commit('updateLocale', { locale: to.query.locale });
+    }
+  }
+  next();
+}
+
+// TODO Document
 export function redirectToCurrentMonth(to, from, next) {
   const now = currentYearAndMonth();
   const path = routerize(now);
@@ -32,6 +44,7 @@ export function redirectToCurrentMonth(to, from, next) {
   });
 }
 
+// TODO Document
 export function updateSelectedMonth(to, from, next) {
   const path = {
     year: to.params.year,

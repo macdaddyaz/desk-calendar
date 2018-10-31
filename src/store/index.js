@@ -9,7 +9,7 @@ Vue.use(Vuex);
 const selectedMonth = currentMonth();
 const options = defaultOptions();
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
     selectedMonth,
     options,

@@ -5,6 +5,9 @@ import { goToMonth } from '@/store/mutations';
 function makeCalendarState(yearAndMonth) {
   return {
     selectedMonth: createMoment(yearAndMonth),
+    options: {
+      locale: 'en',
+    },
   };
 }
 
@@ -131,6 +134,19 @@ describe('calendar getters', () => {
       });
       const expectedNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+      expect(weekdayNames(state)).toEqual(expectedNames);
+    });
+
+    it('does not modify the Moment locale data', () => {
+      const state = makeCalendarState({
+        year: 2015,
+        month: 11,
+      });
+      state.options.locale = 'it';
+
+      const expectedNames = ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'];
+      expect(weekdayNames(state)).toEqual(expectedNames);
+      // Call again to ensure idempotence
       expect(weekdayNames(state)).toEqual(expectedNames);
     });
   });

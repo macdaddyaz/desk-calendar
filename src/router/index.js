@@ -1,4 +1,4 @@
-import { redirectToCurrentMonth, updateSelectedMonth } from '@/router/common';
+import { redirectToCurrentMonth, updateSelectedMonth, updateStateFromQuery } from '@/router/common';
 import Calendar from '@/views/Calendar.vue';
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -19,8 +19,11 @@ export const routes = [
   },
 ];
 
-// noinspection JSUnusedGlobalSymbols
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes,
 });
+router.beforeEach(updateStateFromQuery);
+
+// noinspection JSUnusedGlobalSymbols
+export default router;
