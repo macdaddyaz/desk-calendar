@@ -1,11 +1,11 @@
 export const monthDisplay = {
-  full: m => m.format('MMMM Y'),
-  short: m => m.format('MMM Y'),
-  compact: m => m.format('MMM YY'),
+  full: moment => moment.format('MMMM Y'),
+  short: moment => moment.format('MMM Y'),
+  compact: moment => moment.format('MMM YY'),
 };
 
 export const weekdayDisplay = {
-  full: m => m.localeData().weekdays(),
-  short: m => m.localeData().weekdaysShort(),
-  compact: m => m.localeData().weekdaysMin(),
+  full: moment => moment.localeData().weekdays(),
+  short: moment => moment.localeData().weekdaysShort(),
+  compact: moment => moment.localeData().weekdaysMin(),
 };

@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import { currentMonth } from '@/store/common';
+import { YearAndMonth } from '@/store/common';
 
 export default {
   computed: {
     copyrightYear() {
-      return currentMonth().year();
+      return YearAndMonth.current().year;
     },
   },
 };

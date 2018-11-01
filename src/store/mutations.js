@@ -1,13 +1,12 @@
+import { YearAndMonth } from '@/store/common';
+
 /**
  * Updates the calendar's selected month with the given month.
  * @param state
  * @param newMonth
  */
-export function goToMonth(state, newMonth) {
-  state.selectedMonth = state.selectedMonth.clone()
-                             .year(newMonth.year)
-                             .month(newMonth.month)
-                             .locale(state.options.locale);
+export function goToMonth(state, { year, month }) {
+  state.selectedMonth = new YearAndMonth(year, month);
 }
 
 /**
@@ -18,7 +17,4 @@ export function goToMonth(state, newMonth) {
  */
 export function updateLocale(state, { locale }) {
   state.options.locale = locale;
-  state.selectedMonth = state.selectedMonth.clone().locale(locale);
 }
-
-// TODO Can we make the selectedMonth update more uniform?

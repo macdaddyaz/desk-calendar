@@ -1,10 +1,10 @@
-import { createMoment, currentMonth, currentYearAndMonth } from '@/store/common';
+import { YearAndMonth } from '@/store/common';
 import { daysOfMonth, monthDisplayLabel, nextMonth, previousMonth, weekdayNames } from '@/store/getters';
 import { goToMonth } from '@/store/mutations';
 
-function makeCalendarState(yearAndMonth) {
+function makeCalendarState({ year, month }) {
   return {
-    selectedMonth: createMoment(yearAndMonth),
+    selectedMonth: new YearAndMonth(year, month),
     options: {
       locale: 'en',
     },
@@ -12,37 +12,32 @@ function makeCalendarState(yearAndMonth) {
 }
 
 describe('common calendar functions', () => {
-  describe('currentMonth', () => {
-    it('matches system time', () => {
-      const curr = currentMonth();
-      const now = new Date();
-
-      expect(curr.year()).toBe(now.getFullYear());
-      expect(curr.month()).toBe(now.getMonth());
-      expect(curr.date()).toBe(1);
-    });
-  });
-
-  describe('currentYearAndMonth', () => {
-    it('matches system time', () => {
-      const curr = currentYearAndMonth();
+  describe('YearAndMonth', () => {
+    it('current() matches system time', () => {
+      const curr = YearAndMonth.current();
       const now = new Date();
 
       expect(curr.year).toBe(now.getFullYear());
       expect(curr.month).toBe(now.getMonth());
     });
-  });
 
-  describe('createMoment', () => {
-    it('createMoment: sets the right year/month/day', () => {
-      const m = createMoment({
-        year: 2018,
-        month: 9,
-      });
+    it('toMoment() sets the right year/month/day', () => {
+      const ym = new YearAndMonth(2018, 9);
+      const m = ym.toMoment();
 
       expect(m.year()).toBe(2018);
       expect(m.month()).toBe(9);
       expect(m.date()).toBe(1);
+    });
+
+    it('toMoment(locale) also sets the locale', () => {
+      const ym = new YearAndMonth(2018, 1);
+      const m = ym.toMoment('ar');
+
+      expect(m.year()).toBe(2018);
+      expect(m.month()).toBe(1);
+      expect(m.date()).toBe(1);
+      expect(m.locale()).toBe('ar');
     });
   });
 });
@@ -59,8 +54,8 @@ describe('calendar getters', () => {
       expect(prev.year).toBe(2017);
       expect(prev.month).toBe(7);
       // Ensure existing state has not changed
-      expect(state.selectedMonth.year()).toBe(2017);
-      expect(state.selectedMonth.month()).toBe(8);
+      expect(state.selectedMonth.year).toBe(2017);
+      expect(state.selectedMonth.month).toBe(8);
     });
 
     it('rolls to previous year', () => {
@@ -73,8 +68,8 @@ describe('calendar getters', () => {
       expect(prev.year).toBe(2016);
       expect(prev.month).toBe(11);
       // Ensure existing state has not changed
-      expect(state.selectedMonth.year()).toBe(2017);
-      expect(state.selectedMonth.month()).toBe(0);
+      expect(state.selectedMonth.year).toBe(2017);
+      expect(state.selectedMonth.month).toBe(0);
     });
   });
 
@@ -89,8 +84,8 @@ describe('calendar getters', () => {
       expect(next.year).toBe(2017);
       expect(next.month).toBe(5);
       // Ensure existing state has not changed
-      expect(state.selectedMonth.year()).toBe(2017);
-      expect(state.selectedMonth.month()).toBe(4);
+      expect(state.selectedMonth.year).toBe(2017);
+      expect(state.selectedMonth.month).toBe(4);
     });
 
     it('rolls to next year', () => {
@@ -103,8 +98,8 @@ describe('calendar getters', () => {
       expect(next.year).toBe(2018);
       expect(next.month).toBe(0);
       // Ensure existing state has not changed
-      expect(state.selectedMonth.year()).toBe(2017);
-      expect(state.selectedMonth.month()).toBe(11);
+      expect(state.selectedMonth.year).toBe(2017);
+      expect(state.selectedMonth.month).toBe(11);
     });
   });
 
@@ -197,9 +192,8 @@ describe('calendar mutations', () => {
         month: 1,
       });
 
-      expect(state.selectedMonth.year()).toBe(2018);
-      expect(state.selectedMonth.month()).toBe(1);
-      expect(state.selectedMonth.date()).toBe(1);
+      expect(state.selectedMonth.year).toBe(2018);
+      expect(state.selectedMonth.month).toBe(1);
     });
   });
 });

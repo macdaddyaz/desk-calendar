@@ -1,4 +1,4 @@
-import { currentMonth, defaultOptions } from '@/store/common';
+import { defaultOptions, YearAndMonth } from '@/store/common';
 import * as getters from '@/store/getters';
 import * as mutations from '@/store/mutations';
 import Vue from 'vue';
@@ -6,7 +6,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const selectedMonth = currentMonth();
+const selectedMonth = YearAndMonth.current();
 const options = defaultOptions();
 
 export default new Vuex.Store({

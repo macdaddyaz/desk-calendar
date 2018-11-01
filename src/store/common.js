@@ -2,22 +2,58 @@ import * as strategies from '@/store/strategies';
 import moment from 'moment';
 
 /**
- * Creates a `Moment` object for the current month. The day of month is set
- * to 1.
+ * Data structure representing a year and month combination.
  */
-export function currentMonth() {
-  return moment().date(1);
-}
+export class YearAndMonth {
+  /**
+   * Creates an object with the given year and month.
+   * @param year {number}
+   * @param month {number}
+   */
+  constructor(year, month) {
+    this.yr = year;
+    this.mo = month;
+  }
 
-/**
- * Creates a `YearAndMonth` object for the current month.
- */
-export function currentYearAndMonth() {
-  const now = currentMonth();
-  return {
-    year: now.year(),
-    month: now.month(),
-  };
+  /**
+   * Retrieves the 'year' that this object represents.
+   * @returns {number}
+   */
+  get year() {
+    return this.yr;
+  }
+
+  /**
+   * Retrieves the 'month' that this object represents.
+   * @returns {number}
+   */
+  get month() {
+    return this.mo;
+  }
+
+  /**
+   * Converts this `YearAndMonth` to a `moment`.
+   * @param locale {string|null|undefined} If specified, the `moment` object's locale will be set
+   * @return {moment.Moment}
+   */
+  toMoment(locale) {
+    const m = moment().year(this.year)
+                      .month(this.month)
+                      .date(1);
+    if (locale) {
+      m.locale(locale);
+    }
+    return m;
+  }
+
+  /**
+   * Creates a `YearAndMonth` object that represents the real current month.
+   * @returns {YearAndMonth}
+   */
+  static current() {
+    const now = moment();
+    return new YearAndMonth(now.year(), now.month());
+  }
 }
 
 /**

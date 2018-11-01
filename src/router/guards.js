@@ -1,7 +1,12 @@
 import { derouterize, routerize } from '@/router/common';
 import store from '@/store';
-import { currentYearAndMonth } from '@/store/common';
+import { YearAndMonth } from '@/store/common';
 
+/**
+ * Extracts any 'locale' parameter from the location query, and commits it to
+ * the Vuex store.
+ * @param locale {string}
+ */
 function updateLocaleFromQuery({ locale }) {
   if (locale) {
     store.commit('updateLocale', { locale });
@@ -26,7 +31,7 @@ export function updateStateFromQuery(to, from, next) {
  * @param next
  */
 export function redirectToCurrentMonth(to, from, next) {
-  const now = currentYearAndMonth();
+  const now = YearAndMonth.current();
   const path = routerize(now);
   next({
     name: 'calendar',
