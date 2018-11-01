@@ -10,7 +10,12 @@ export function goToMonth(state, newMonth) {
                              .locale(state.options.locale);
 }
 
-// TODO Document
+/**
+ * Updates the options' selected locale, and propagates it to the underlying
+ * selected month, so that UI state reflects the new locale.
+ * @param state
+ * @param locale
+ */
 export function updateLocale(state, { locale }) {
   state.options.locale = locale;
   state.selectedMonth = state.selectedMonth.clone().locale(locale);

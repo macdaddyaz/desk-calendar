@@ -1,4 +1,4 @@
-import { redirectToCurrentMonth, updateSelectedMonth, updateStateFromQuery } from '@/router/common';
+import { redirectToCurrentMonth, updateSelectedMonth, updateStateFromQuery } from '@/router/guards';
 import Calendar from '@/views/Calendar.vue';
 import Vue from 'vue';
 import Router from 'vue-router';

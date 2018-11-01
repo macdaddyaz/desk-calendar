@@ -1,7 +1,15 @@
-import { derouterize, redirectToCurrentMonth, routerize, updateSelectedMonth } from '@/router/common';
+import { derouterize, routerize } from '@/router/common';
+import { redirectToCurrentMonth, updateSelectedMonth, updateStateFromQuery } from '@/router/guards';
 import store from '@/store';
 
 jest.mock('vuex');
+
+afterEach(() => {
+  // Testing the 'store.commit' function in multiple places. Without resetting
+  // the mocks between each test, the mock call information is retained and
+  // pollutes subsequent tests.
+  jest.resetAllMocks();
+});
 
 describe('common router functions', () => {
   describe('routerize', () => {
@@ -45,12 +53,15 @@ describe('common router functions', () => {
       },
     );
   });
+});
+
+describe('router guard functions', () => {
+  const RouteMock = jest.fn();
 
   describe('redirectToCurrentMonth', () => {
     it('routes empty path to the current month', () => {
       const now = new Date();
       // Routes are not used as part of this function
-      const RouteMock = jest.fn();
       const toMock = new RouteMock();
       const fromMock = new RouteMock();
 
@@ -66,7 +77,6 @@ describe('common router functions', () => {
 
   describe('updateSelectedMonth', () => {
     it('updates the store with the new month', () => {
-      const RouteMock = jest.fn();
       const toMock = new RouteMock();
       toMock.params = {
         year: '2012',
@@ -82,6 +92,34 @@ describe('common router functions', () => {
         year: 2012,
         month: 4,
       });
+      expect(mockNext).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('updateStateFromQuery', () => {
+    it('updates the store with the specified locale', () => {
+      const toMock = new RouteMock();
+      toMock.query = {
+        locale: 'fr',
+      };
+      const mockNext = jest.fn(() => {
+        // no implementation
+      });
+
+      updateStateFromQuery(toMock, undefined, mockNext);
+      expect(store.commit).toBeCalledWith('updateLocale', { locale: 'fr' });
+      expect(mockNext).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not break when no locale parameter is specified', () => {
+      const toMock = new RouteMock();
+      toMock.query = {};
+      const mockNext = jest.fn(() => {
+        // no implementation
+      });
+
+      updateStateFromQuery(toMock, undefined, mockNext);
+      expect(store.commit.mock.calls.length).toBe(0);
       expect(mockNext).toHaveBeenCalledTimes(1);
     });
   });
