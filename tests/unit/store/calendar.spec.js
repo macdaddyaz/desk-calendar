@@ -1,30 +1,21 @@
 import { YearAndMonth } from '@/store/common';
 import { daysOfMonth, monthDisplayLabel, nextMonth, previousMonth, weekdayNames } from '@/store/getters';
 import { goToMonth } from '@/store/mutations';
-import * as strategies from '@/store/strategies';
+import { makeCalendarState } from './testStore';
 
-function makeCalendarState({ year, month }) {
-  return {
-    selectedMonth: new YearAndMonth(year, month),
-    options: {
-      locale: 'en',
-      monthDisplayLabelStrategy: strategies.monthDisplay.full,
-      weekdayDisplayLabelStrategy: strategies.weekdayDisplay.full,
-    },
-  };
-}
-
-describe('common calendar functions', () => {
-  describe('YearAndMonth', () => {
-    it('current() matches system time', () => {
+describe('YearAndMonth', () => {
+  describe('current', () => {
+    it('matches system time', () => {
       const curr = YearAndMonth.current();
       const now = new Date();
 
       expect(curr.year).toBe(now.getFullYear());
       expect(curr.month).toBe(now.getMonth());
     });
+  });
 
-    it('toMoment() sets the right year/month/day', () => {
+  describe('toMoment', () => {
+    it('sets the right year/month/day', () => {
       const ym = new YearAndMonth(2018, 9);
       const m = ym.toMoment();
 
@@ -33,7 +24,7 @@ describe('common calendar functions', () => {
       expect(m.date()).toBe(1);
     });
 
-    it('toMoment(locale) also sets the locale', () => {
+    it('sets the right locale, if provided', () => {
       const ym = new YearAndMonth(2018, 1);
       const m = ym.toMoment('ar');
 

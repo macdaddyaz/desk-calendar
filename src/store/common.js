@@ -1,6 +1,7 @@
 import * as strategies from '@/store/strategies';
 import moment from 'moment';
 
+// noinspection JSUnusedGlobalSymbols
 export const locales = {
   ar: 'عربى',
   'zh-cn': '中文',
@@ -72,15 +73,16 @@ export class YearAndMonth {
   }
 }
 
-/**
- * Creates a `Moment` object from the given `YearAndMonth`. The day of month is
- * set to 1.
- * @param yearAndMonth
- */
-export function createMoment(yearAndMonth) {
-  return moment().year(yearAndMonth.year)
-                 .month(yearAndMonth.month)
-                 .date(1);
+export class CalendarOptions {
+  constructor(locale, monthDisplayLabelStrategy, weekdayDisplayLabelStrategy) {
+    this.locale = locale;
+    this.monthDisplayLabelStrategy = monthDisplayLabelStrategy;
+    this.weekdayDisplayLabelStrategy = weekdayDisplayLabelStrategy;
+  }
+
+  static default() {
+    return new CalendarOptions('en', strategies.monthDisplay.full, strategies.weekdayDisplay.full);
+  }
 }
 
 export function defaultOptions() {

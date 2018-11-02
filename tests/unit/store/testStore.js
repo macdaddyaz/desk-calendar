@@ -1,17 +1,20 @@
-import { YearAndMonth } from '@/store/common';
+import { CalendarOptions, YearAndMonth } from '@/store/common';
 import * as getters from '@/store/getters';
 import * as mutations from '@/store/mutations';
-import { monthDisplay, weekdayDisplay } from '@/store/strategies';
 
-export default function createTestStoreConfig({ year, month }) {
-  const state = {
+export function makeCalendarState({ year, month }) {
+  return {
     selectedMonth: new YearAndMonth(year, month),
-    options: {
-      locale: 'en',
-      monthDisplayLabelStrategy: monthDisplay.full,
-      weekdayDisplayLabelStrategy: weekdayDisplay.full,
-    },
+    options: CalendarOptions.default(),
   };
+}
+
+
+export function makeTestStoreConfig({ year, month }) {
+  const state = makeCalendarState({
+    year,
+    month,
+  });
 
   return {
     state,

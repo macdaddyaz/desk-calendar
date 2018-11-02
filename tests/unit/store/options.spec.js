@@ -1,24 +1,24 @@
-import { defaultOptions, YearAndMonth } from '@/store/common';
+import { CalendarOptions, YearAndMonth } from '@/store/common';
 import { monthDisplay, weekdayDisplay } from '@/store/strategies';
 import { createLocalVue } from '@vue/test-utils';
 import moment from 'moment';
 import Vuex from 'vuex';
-import createTestStoreConfig from './testStore';
+import { makeTestStoreConfig } from './testStore';
 
-describe('common option functions', () => {
-  describe('defaultOptions', () => {
+describe('CalendarOptions', () => {
+  describe('default', () => {
     it('defaults language to "en"', () => {
-      const options = defaultOptions();
+      const options = CalendarOptions.default();
       expect(options.locale).toEqual('en');
     });
 
     it('defaults month display strategy to "full"', () => {
-      const options = defaultOptions();
+      const options = CalendarOptions.default();
       expect(options.monthDisplayLabelStrategy).toBe(monthDisplay.full);
     });
 
     it('defaults weekday display strategy to "full"', () => {
-      const options = defaultOptions();
+      const options = CalendarOptions.default();
       expect(options.weekdayDisplayLabelStrategy).toBe(weekdayDisplay.full);
     });
   });
@@ -107,7 +107,7 @@ describe('weekday display strategies', () => {
 describe('option mutations', () => {
   describe('updateLocale', () => {
     it('updates state with the given locale', () => {
-      const storeConfig = createTestStoreConfig({
+      const storeConfig = makeTestStoreConfig({
         year: 2018,
         month: 9,
       });
@@ -121,7 +121,7 @@ describe('option mutations', () => {
     localVue.use(Vuex);
 
     it('triggers other state updates', () => {
-      const storeConfig = createTestStoreConfig({
+      const storeConfig = makeTestStoreConfig({
         year: 2015,
         month: 5,
       });
@@ -157,7 +157,7 @@ describe('option mutations', () => {
 
   describe('updateDensity', () => {
     it('updates state with the given density', () => {
-      const storeConfig = createTestStoreConfig({
+      const storeConfig = makeTestStoreConfig({
         year: 2022,
         month: 3,
       });
@@ -169,7 +169,7 @@ describe('option mutations', () => {
     });
 
     it('triggers other state updates', () => {
-      const storeConfig = createTestStoreConfig({
+      const storeConfig = makeTestStoreConfig({
         year: 2006,
         month: 1,
       });
