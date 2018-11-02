@@ -1,6 +1,22 @@
 import * as strategies from '@/store/strategies';
 import moment from 'moment';
 
+export const locales = {
+  ar: 'عربى',
+  'zh-cn': '中文',
+  de: 'Deutsch',
+  en: 'English',
+  es: 'Español',
+  fr: 'français',
+  hi: 'हिंदी',
+  it: 'italiano',
+  jp: '日本語',
+  pt: 'Português',
+  sw: 'swahili',
+};
+
+export const densities = ['full', 'short', 'compact'];
+
 /**
  * Data structure representing a year and month combination.
  */
@@ -75,16 +91,9 @@ export function defaultOptions() {
   };
 }
 
-export const locales = {
-  ar: 'عربى',
-  'zh-cn': '中文',
-  de: 'Deutsch',
-  en: 'English',
-  es: 'Español',
-  fr: 'français',
-  hi: 'हिंदी',
-  it: 'italiano',
-  jp: '日本語',
-  pt: 'Português',
-  sw: 'swahili',
-};
+export function normalizeDensity(value) {
+  if (!densities.includes(value)) {
+    return densities[0];
+  }
+  return value;
+}

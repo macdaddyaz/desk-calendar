@@ -28,7 +28,8 @@ export function nextMonth(state) {
  */
 export function monthDisplayLabel(state) {
   const { locale } = state.options;
-  return state.selectedMonth.toMoment(locale).format('MMMM YYYY');
+  const m = state.selectedMonth.toMoment(locale);
+  return state.options.monthDisplayLabelStrategy(m);
 }
 
 /**
@@ -38,8 +39,7 @@ export function monthDisplayLabel(state) {
  */
 export function weekdayNames(state) {
   const localeData = moment.localeData(state.options.locale);
-  // .slice() is to copy the array, because we get a reference to Moment's.
-  const weekdays = localeData.weekdays().slice();
+  const weekdays = state.options.weekdayDisplayLabelStrategy(localeData);
   const firstDay = localeData.firstDayOfWeek();
   for (let i = 0; i < firstDay; i++) {
     weekdays.push(weekdays.shift());

@@ -1,6 +1,6 @@
 import { derouterize, routerize } from '@/router/common';
 import store from '@/store';
-import { YearAndMonth } from '@/store/common';
+import { normalizeDensity, YearAndMonth } from '@/store/common';
 
 /**
  * Extracts any 'locale' parameter from the location query, and commits it to
@@ -13,6 +13,12 @@ function updateLocaleFromQuery({ locale }) {
   }
 }
 
+function updateDensityFromQuery({ density }) {
+  if (density) {
+    store.commit('updateDensity', { density: normalizeDensity(density) });
+  }
+}
+
 /**
  * Extracts query parameters and updates the Vuex store.
  * @param to
@@ -21,6 +27,7 @@ function updateLocaleFromQuery({ locale }) {
  */
 export function updateStateFromQuery(to, from, next) {
   updateLocaleFromQuery(to.query);
+  updateDensityFromQuery(to.query);
   next();
 }
 

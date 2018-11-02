@@ -1,6 +1,7 @@
 import { defaultOptions, YearAndMonth } from '@/store/common';
 import { monthDisplay, weekdayDisplay } from '@/store/strategies';
 import { createLocalVue } from '@vue/test-utils';
+import moment from 'moment';
 import Vuex from 'vuex';
 import createTestStoreConfig from './testStore';
 
@@ -76,28 +77,28 @@ describe('month display strategies', () => {
 describe('weekday display strategies', () => {
   describe('full', () => {
     it('supplies the full weekday names and starts the week with Sunday', () => {
-      const m = new YearAndMonth(2018, 4).toMoment();
+      const localeData = moment.localeData('en');
       const expectedNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-      expect(weekdayDisplay.full(m)).toEqual(expectedNames);
+      expect(weekdayDisplay.full(localeData)).toEqual(expectedNames);
     });
   });
 
   describe('short', () => {
     it('supplies the short weekday names and starts the week with Sunday', () => {
-      const m = new YearAndMonth(2018, 4).toMoment();
+      const localeData = moment.localeData('en');
       const expectedNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-      expect(weekdayDisplay.short(m)).toEqual(expectedNames);
+      expect(weekdayDisplay.short(localeData)).toEqual(expectedNames);
     });
   });
 
   describe('compact', () => {
     it('supplies the compact weekday names and starts the week with Sunday', () => {
-      const m = new YearAndMonth(2018, 4).toMoment();
+      const localeData = moment.localeData('en');
       const expectedNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-      expect(weekdayDisplay.compact(m)).toEqual(expectedNames);
+      expect(weekdayDisplay.compact(localeData)).toEqual(expectedNames);
     });
   });
 });
@@ -151,6 +152,36 @@ describe('option mutations', () => {
           29, 30, null, null, null, null, null,
           null, null, null, null, null, null, null,
         ]);
+    });
+  });
+
+  describe('updateDensity', () => {
+    it('updates state with the given density', () => {
+      const storeConfig = createTestStoreConfig({
+        year: 2022,
+        month: 3,
+      });
+      const store = new Vuex.Store(storeConfig);
+      store.commit('updateDensity', { density: 'compact' });
+
+      expect(store.state.options.monthDisplayLabelStrategy).toEqual(monthDisplay.compact);
+      expect(store.state.options.weekdayDisplayLabelStrategy).toEqual(weekdayDisplay.compact);
+    });
+
+    it('triggers other state updates', () => {
+      const storeConfig = createTestStoreConfig({
+        year: 2006,
+        month: 1,
+      });
+      const store = new Vuex.Store(storeConfig);
+      // check starting state
+      expect(store.getters.monthDisplayLabel).toEqual('February 2006');
+      expect(store.getters.weekdayNames)
+        .toEqual(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+      store.commit('updateDensity', { density: 'short' });
+      expect(store.getters.monthDisplayLabel).toEqual('Feb 2006');
+      expect(store.getters.weekdayNames)
+        .toEqual(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
     });
   });
 });

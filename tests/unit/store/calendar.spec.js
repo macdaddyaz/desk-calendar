@@ -1,12 +1,15 @@
 import { YearAndMonth } from '@/store/common';
 import { daysOfMonth, monthDisplayLabel, nextMonth, previousMonth, weekdayNames } from '@/store/getters';
 import { goToMonth } from '@/store/mutations';
+import * as strategies from '@/store/strategies';
 
 function makeCalendarState({ year, month }) {
   return {
     selectedMonth: new YearAndMonth(year, month),
     options: {
       locale: 'en',
+      monthDisplayLabelStrategy: strategies.monthDisplay.full,
+      weekdayDisplayLabelStrategy: strategies.weekdayDisplay.full,
     },
   };
 }
@@ -195,5 +198,15 @@ describe('calendar mutations', () => {
       expect(state.selectedMonth.year).toBe(2018);
       expect(state.selectedMonth.month).toBe(1);
     });
+  });
+});
+
+describe('display strategies', () => {
+  describe('monthDisplay', () => {
+
+  });
+
+  describe('weekdayDisplay', () => {
+
   });
 });

@@ -4,8 +4,9 @@ export const monthDisplay = {
   compact: moment => moment.format('MMM YY'),
 };
 
+// .slice() is to copy the array, because we get a reference to Moment's.
 export const weekdayDisplay = {
-  full: moment => moment.localeData().weekdays(),
-  short: moment => moment.localeData().weekdaysShort(),
-  compact: moment => moment.localeData().weekdaysMin(),
+  full: localeData => localeData.weekdays().slice(),
+  short: localeData => localeData.weekdaysShort().slice(),
+  compact: localeData => localeData.weekdaysMin().slice(),
 };

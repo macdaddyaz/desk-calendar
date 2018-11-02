@@ -111,7 +111,35 @@ describe('router guard functions', () => {
       expect(mockNext).toHaveBeenCalledTimes(1);
     });
 
-    it('does not break when no locale parameter is specified', () => {
+    it('updates the store with the specified density', () => {
+      const toMock = new RouteMock();
+      toMock.query = {
+        density: 'compact',
+      };
+      const mockNext = jest.fn(() => {
+        // no implementation
+      });
+
+      updateStateFromQuery(toMock, undefined, mockNext);
+      expect(store.commit).toBeCalledWith('updateDensity', { density: 'compact' });
+      expect(mockNext).toHaveBeenCalledTimes(1);
+    });
+
+    it('defaults to "full" if the parameter is not recognized', () => {
+      const toMock = new RouteMock();
+      toMock.query = {
+        density: 'badvalue',
+      };
+      const mockNext = jest.fn(() => {
+        // no implementation
+      });
+
+      updateStateFromQuery(toMock, undefined, mockNext);
+      expect(store.commit).toBeCalledWith('updateDensity', { density: 'full' });
+      expect(mockNext).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not do anything when no query parameters are specified', () => {
       const toMock = new RouteMock();
       toMock.query = {};
       const mockNext = jest.fn(() => {
