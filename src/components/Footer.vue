@@ -5,16 +5,18 @@
     </v-btn>
     <v-chip color="secondary" outline>Desk Calendar, &copy; {{copyrightYear}} Eric McIntyre</v-chip>
     <v-spacer></v-spacer>
-    <v-btn fab dark small color="accent">
-      <v-icon>settings</v-icon>
-    </v-btn>
+    <Settings></Settings>
   </v-footer>
 </template>
 
 <script>
 import { YearAndMonth } from '@/store/common';
+import Settings from '@/components/Settings.vue';
 
 export default {
+  components: {
+    Settings,
+  },
   computed: {
     copyrightYear() {
       return YearAndMonth.current().year;

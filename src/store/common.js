@@ -1,20 +1,19 @@
 import * as strategies from '@/store/strategies';
 import moment from 'moment';
 
-// noinspection JSUnusedGlobalSymbols
-export const locales = {
-  ar: 'عربى',
-  'zh-cn': '中文',
-  de: 'Deutsch',
-  en: 'English',
-  es: 'Español',
-  fr: 'français',
-  hi: 'हिंदी',
-  it: 'italiano',
-  jp: '日本語',
-  pt: 'Português',
-  sw: 'swahili',
-};
+export const locales = [
+  { value: 'ar', text: 'عربى' },
+  { value: 'zh-cn', text: '中文' },
+  { value: 'de', text: 'Deutsch' },
+  { value: 'en', text: 'English' },
+  { value: 'es', text: 'Español' },
+  { value: 'fr', text: 'français' },
+  { value: 'hi', text: 'हिंदी' },
+  { value: 'it', text: 'italiano' },
+  { value: 'ja', text: '日本語' },
+  { value: 'pt', text: 'Português' },
+  { value: 'sw', text: 'swahili' },
+];
 
 export const densities = ['full', 'short', 'compact'];
 
@@ -73,6 +72,9 @@ export class YearAndMonth {
   }
 }
 
+/**
+ * Data structure for the calendar options.
+ */
 export class CalendarOptions {
   constructor(locale, monthDisplayLabelStrategy, weekdayDisplayLabelStrategy) {
     this.locale = locale;
@@ -80,17 +82,15 @@ export class CalendarOptions {
     this.weekdayDisplayLabelStrategy = weekdayDisplayLabelStrategy;
   }
 
+  /**
+   * Creates the default or starting options for the calendar:
+   *   - English locale
+   *   - Full density
+   * @return {CalendarOptions}
+   */
   static default() {
     return new CalendarOptions('en', strategies.monthDisplay.full, strategies.weekdayDisplay.full);
   }
-}
-
-export function defaultOptions() {
-  return {
-    locale: 'en',
-    monthDisplayLabelStrategy: strategies.monthDisplay.full,
-    weekdayDisplayLabelStrategy: strategies.weekdayDisplay.full,
-  };
 }
 
 export function normalizeDensity(value) {
