@@ -1,5 +1,14 @@
 
-# Created by https://www.gitignore.io/api/web,sass,macos,linux
+# Created by https://www.gitignore.io/api/web,sass,macos,linux,jetbrains+iml
+# Edit at https://www.gitignore.io/?templates=web,sass,macos,linux,jetbrains+iml
+
+### JetBrains+iml Patch ###
+# Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
+
+*.iml
+modules.xml
+.idea/
+*.ipr
 
 ### Linux ###
 *~
@@ -63,6 +72,4 @@ Temporary Items
 *.rss
 *.xhtml
 
-
-# End of https://www.gitignore.io/api/web,sass,macos,linux
-
+# End of https://www.gitignore.io/api/web,sass,macos,linux,jetbrains+iml
