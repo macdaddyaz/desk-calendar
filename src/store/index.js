@@ -9,7 +9,7 @@ Vue.use(Vuex);
 const selectedMonth = YearAndMonth.current();
 const options = CalendarOptions.default();
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     selectedMonth,
     options,
@@ -18,3 +18,4 @@ export default new Vuex.Store({
   mutations,
   actions: {},
 });
+export default store;

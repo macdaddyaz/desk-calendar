@@ -1,18 +1,52 @@
+import { calendarStorage } from '@/storage';
 import * as strategies from '@/store/strategies';
 import moment from 'moment';
 
 export const locales = [
-  { value: 'ar', text: 'عربى' },
-  { value: 'zh-cn', text: '中文' },
-  { value: 'de', text: 'Deutsch' },
-  { value: 'en', text: 'English' },
-  { value: 'es', text: 'Español' },
-  { value: 'fr', text: 'français' },
-  { value: 'hi', text: 'हिंदी' },
-  { value: 'it', text: 'italiano' },
-  { value: 'ja', text: '日本語' },
-  { value: 'pt', text: 'Português' },
-  { value: 'sw', text: 'swahili' },
+  {
+    value: 'ar',
+    text: 'عربى',
+  },
+  {
+    value: 'zh-cn',
+    text: '中文',
+  },
+  {
+    value: 'de',
+    text: 'Deutsch',
+  },
+  {
+    value: 'en',
+    text: 'English',
+  },
+  {
+    value: 'es',
+    text: 'Español',
+  },
+  {
+    value: 'fr',
+    text: 'français',
+  },
+  {
+    value: 'hi',
+    text: 'हिंदी',
+  },
+  {
+    value: 'it',
+    text: 'italiano',
+  },
+  {
+    value: 'ja',
+    text: '日本語',
+  },
+  {
+    value: 'pt',
+    text: 'Português',
+  },
+  {
+    value: 'sw',
+    text: 'swahili',
+  },
 ];
 
 export const densities = ['full', 'short', 'compact'];
@@ -27,8 +61,8 @@ export class YearAndMonth {
    * @param month {number}
    */
   constructor(year, month) {
-    this.yr = year;
-    this.mo = month;
+    this._year = year;
+    this._month = month;
   }
 
   /**
@@ -36,7 +70,7 @@ export class YearAndMonth {
    * @returns {number}
    */
   get year() {
-    return this.yr;
+    return this._year;
   }
 
   /**
@@ -44,7 +78,7 @@ export class YearAndMonth {
    * @returns {number}
    */
   get month() {
-    return this.mo;
+    return this._month;
   }
 
   /**
@@ -89,7 +123,8 @@ export class CalendarOptions {
    * @return {CalendarOptions}
    */
   static default() {
-    return new CalendarOptions('en', strategies.monthDisplay.full, strategies.weekdayDisplay.full);
+    const locale = calendarStorage.locale || 'en';
+    return new CalendarOptions(locale, strategies.monthDisplay.full, strategies.weekdayDisplay.full);
   }
 }
 

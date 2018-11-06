@@ -7,6 +7,10 @@ import { makeTestStoreConfig } from './testStore';
 
 describe('CalendarOptions', () => {
   describe('default', () => {
+    afterEach(() => {
+      localStorage.clear();
+    });
+
     it('defaults language to "en"', () => {
       const options = CalendarOptions.default();
       expect(options.locale).toEqual('en');
@@ -20,6 +24,14 @@ describe('CalendarOptions', () => {
     it('defaults weekday display strategy to "full"', () => {
       const options = CalendarOptions.default();
       expect(options.weekdayDisplayLabelStrategy).toBe(weekdayDisplay.full);
+    });
+
+    it('uses stored locale, if available', () => {
+      localStorage.getItem.mockReturnValueOnce('de');
+
+      const options = CalendarOptions.default();
+      expect(options.locale).toEqual('de');
+      expect(localStorage.getItem).toHaveBeenLastCalledWith('locale');
     });
   });
 });
