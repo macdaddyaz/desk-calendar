@@ -35,7 +35,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   #main {
-    background-color: #E8EAF6; // Vuetify theme 'base'
+    background-color: var(--v-secondary-lighten2);
   }
 
   #cal-grid {

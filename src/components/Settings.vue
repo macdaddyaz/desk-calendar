@@ -1,7 +1,7 @@
 <template>
   <v-bottom-sheet inset max-width="560px">
     <v-btn fab dark small color="accent" slot="activator">
-      <v-icon>settings</v-icon>
+      <v-icon>mdi-settings</v-icon>
     </v-btn>
     <v-list>
       <v-subheader>Calendar Settings</v-subheader>

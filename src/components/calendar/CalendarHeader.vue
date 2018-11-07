@@ -2,11 +2,11 @@
   <v-toolbar app color="primary">
     <v-spacer></v-spacer>
     <v-btn light fab small color="accent" @click="goPrevious">
-      <v-icon>arrow_back_ios</v-icon>
+      <v-icon size="2.5em">mdi-chevron-left</v-icon>
     </v-btn>
     <v-toolbar-title class="month-header">{{monthDisplayLabel}}</v-toolbar-title>
     <v-btn fab small color="accent" @click="goNext">
-      <v-icon>arrow_forward_ios</v-icon>
+      <v-icon size="2.5em">mdi-chevron-right</v-icon>
     </v-btn>
     <v-spacer></v-spacer>
   </v-toolbar>
