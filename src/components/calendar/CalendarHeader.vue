@@ -27,26 +27,21 @@ export default {
   },
   methods: {
     goPrevious() {
-      this.$router.push({
-        name: 'calendar',
-        params: this.previous,
-      });
+      this.$emit('nav-previous');
     },
     goNext() {
-      this.$router.push({
-        name: 'calendar',
-        params: this.next,
-      });
+      this.$emit('nav-next');
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .month-header {
-    width: 30%;
-    color: white;
-    font-size: 200%;
-    text-align: center;
-  }
+.month-header {
+  width: 30%;
+  margin-left: initial;
+  color: white;
+  font-size: 200%;
+  text-align: center;
+}
 </style>

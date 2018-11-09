@@ -1,6 +1,11 @@
 <template>
-  <v-app>
-    <CalendarHeader :previous="previousRoute" :next="nextRoute"></CalendarHeader>
+  <v-app v-touch="{
+          left: () => goNext(),
+          right: () => goPrevious(),
+        }">
+    <CalendarHeader :previous="previousRoute" :next="nextRoute"
+                    v-on:nav-previous="goPrevious" v-on:nav-next="goNext">
+    </CalendarHeader>
     <CalendarGrid></CalendarGrid>
     <Footer></Footer>
   </v-app>
@@ -32,6 +37,20 @@ export default {
     },
     nextRoute() {
       return routerize(this.nextMonth);
+    },
+  },
+  methods: {
+    goPrevious() {
+      this.$router.push({
+        name: 'calendar',
+        params: this.previousRoute,
+      });
+    },
+    goNext() {
+      this.$router.push({
+        name: 'calendar',
+        params: this.nextRoute,
+      });
     },
   },
   beforeRouteUpdate(to, from, next) {

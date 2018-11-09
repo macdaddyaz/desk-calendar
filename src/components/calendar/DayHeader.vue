@@ -17,7 +17,6 @@ export default {
     padding: 4px;
     color: white;
     text-align: center;
-    text-decoration: underline;
     text-transform: uppercase;
     font-weight: bold;
   }
