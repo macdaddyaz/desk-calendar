@@ -52,6 +52,21 @@ export default {
         params: this.nextRoute,
       });
     },
+    handleKeyEvent(event) {
+      switch (event.key) {
+      case 'ArrowLeft':
+        this.goPrevious();
+        break;
+      case 'ArrowRight':
+        this.goNext();
+        break;
+      default:
+        // ignore
+      }
+    },
+  },
+  created() {
+    window.addEventListener('keyup', this.handleKeyEvent);
   },
   beforeRouteUpdate(to, from, next) {
     const newMonth = derouterize(to.params);
