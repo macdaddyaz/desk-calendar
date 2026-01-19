@@ -53,23 +53,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-### Sass ###
-.sass-cache/
-*.css.map
-*.sass.map
-*.scss.map
-
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.xhtml
-
-# End of https://www.gitignore.io/api/web,sass,macos,linux,jetbrains+iml
+# End of https://www.gitignore.io/api/web,macos,linux,jetbrains+iml
