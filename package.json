@@ -2,12 +2,41 @@
   "name": "desk-calendar",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
+  "packageManager": "pnpm@10.29.1+sha512.48dae233635a645768a3028d19545cacc1688639eeb1f3734e42d6d6b971afbf22aa1ac9af52a173d9c3a20c15857cfa400f19994d79a2f626fcc73fccda9bbc",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:lit": "vite dev packages/lit-web-components",
+    "dev:svelte": "vite dev packages/svelte",
+    "build:lit": "vite build packages/lit-web-components",
+    "build:svelte": "vite build packages/svelte",
+    "preview:lit": "vite preview packages/lit-web-components",
+    "preview:svelte": "vite preview packages/svelte",
+    "test": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "Eric McIntyre <mac@riversoforion.com>",
   "license": "CC BY-NC-SA 4.0",
-  "packageManager": "pnpm@10.28.0"
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@skeletonlabs/skeleton": "catalog:skeleton",
+    "@skeletonlabs/skeleton-svelte": "catalog:skeleton",
+    "@types/luxon": "catalog:luxon",
+    "@typescript-eslint/eslint-plugin": "catalog:quality",
+    "@typescript-eslint/parser": "catalog:quality",
+    "eslint": "catalog:quality",
+    "prettier": "catalog:quality",
+    "typescript": "catalog:typescript",
+    "vite": "catalog:vite",
+    "vitest": "catalog:vitest"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "catalog:tailwindcss",
+    "luxon": "catalog:luxon",
+    "tailwindcss": "catalog:tailwindcss"
+  }
 }

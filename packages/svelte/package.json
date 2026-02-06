@@ -1,0 +1,36 @@
+{
+  "name": "svelte",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/compat": "catalog:quality",
+    "@eslint/js": "catalog:quality",
+    "@skeletonlabs/skeleton": "catalog:skeleton",
+    "@skeletonlabs/skeleton-svelte": "catalog:skeleton",
+    "@sveltejs/vite-plugin-svelte": "catalog:svelte",
+    "@tsconfig/svelte": "catalog:svelte",
+    "@types/node": "catalog:",
+    "eslint": "catalog:quality",
+    "eslint-config-prettier": "catalog:quality",
+    "eslint-plugin-svelte": "catalog:quality",
+    "globals": "catalog:",
+    "prettier": "catalog:quality",
+    "svelte": "catalog:svelte",
+    "svelte-check": "catalog:svelte",
+    "typescript": "catalog:typescript",
+    "typescript-eslint": "catalog:quality",
+    "vite": "catalog:vite"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "catalog:tailwindcss",
+    "tailwindcss": "catalog:tailwindcss"
+  }
+}

@@ -1,6 +1,7 @@
+### Node.js ###
+node_modules/
+.pnpm-debug.log
 
-# Created by https://www.gitignore.io/api/web,sass,macos,linux,jetbrains+iml
-# Edit at https://www.gitignore.io/?templates=web,sass,macos,linux,jetbrains+iml
 
 ### JetBrains+iml Patch ###
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
@@ -52,5 +53,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# End of https://www.gitignore.io/api/web,macos,linux,jetbrains+iml
